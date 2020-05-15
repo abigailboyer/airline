@@ -15,7 +15,19 @@
   <main>
     <section class="search">
       <form id="dates">
+        <ul id="nojs-dateSelection">
+          <!-- in javascript, generate a full month, but for now: input -->
+          <li>
+            <label for="departingDate">Departing Date</label> <!-- to be hidden -->
+            <input type="date" id="departingDate" name="departingDate" placeholder="mm/dd/yyy" />
+          </li>
 
+          <li>
+            <label for="returnDate">Return Date</label><!-- to be hidden -->
+            <input type="date" id="returnDate" name="returnDate" placeholder="mm/dd/yyy" />
+          </li>
+
+        </ul>
       </form>
     </section>
   </main>
