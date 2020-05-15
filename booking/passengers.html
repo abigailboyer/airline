@@ -14,8 +14,31 @@
   </header>
   <main>
     <section class="search">
-      <form id="passengers">
+      <form action="departingFlight.html" method="get" id="passengers" novalidate>
+        <ul>
 
+          <li>
+            <ul class="tickets">
+              <li>
+                <label for="adult">Adult</label>
+                <input type="text" name="adult" id="adult" pattern="[0=9]*" inputmode="numeric" value="1" />
+              </li>
+              <li>
+                <label for="child">Child</label>
+                <input type="text" name="child" id="child" pattern="[0=9]*" inputmode="numeric" value="0" />
+              </li>
+              <li>
+                <label for="senior">Senior</label>
+                <input type="text" name="senior" id="senior" pattern="[0=9]*" inputmode="numeric" value="0" />
+              </li>
+            </ul>
+          </li>
+
+          <li class="continue">
+            <input type="submit" id="submit" name="submit" value="Continue" />
+          </li>
+
+        </ul>
       </form>
     </section>
   </main>
