@@ -14,7 +14,39 @@
   </header>
   <main>
     <section class="search">
-      <form id="location">
+      <form action="dates.html" method="get" id="location" novalidate>
+
+        <ul class="tripType">
+          <li>
+            <label for="round-trip">Return</label>
+            <input type="radio" id="round-trip" name="round-trip" value="round-trip" />
+          </li>
+          <li>
+            <label for="one-way">One-Way</label>
+            <input type="radio" id="one-way" name="one-way" value="one-way" />
+          </li>
+          <li>
+            <label for="multi-city">Multi-City</label>
+            <input type="radio" id="multi-city" name="multi-city" value="multi-city" />
+          </li>
+        </ul>
+
+        <ul class="locationInputs">
+          <li>
+            <label for="departingLocation">Where from?</label>
+            <input type="text" id="departingLocation" name="departingLocation" placeholder="Chicago, IL" />
+          </li>
+          <li>
+            <label for="returnLocation">Where to?</label>
+            <input type="text" id="returnLocation" name="returnLocation" placeholder="Dallas, TX" />
+          </li>
+        </ul>
+
+        <ul class="continue">
+          <li>
+            <input type="submit" id="submit" name="submit" value="Continue" />
+          </li>
+        </ul>
 
       </form>
     </section>
