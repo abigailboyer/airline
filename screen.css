@@ -63,7 +63,9 @@ header h2 {
 
 /* form styles */
 
-
+input[type="radio"] {
+  cursor: pointer;
+}
 
 /* page specific styles */
 
@@ -81,8 +83,36 @@ header h2 {
 /* location selection */
 
 /* rotate the list items and organize them on the left margin */
+.tripType {
+  position: fixed;
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  width: 420px;
+  top: 600px;
+  left: 20px;
+  color: #7d7d7d;
+}
+
 .tripType li {
   float: left;
+  width: 100px;
+  margin-right: 40px;
+}
+
+.tripType label {
+  cursor: pointer;
+}
+
+.tripType input[type=radio] {
+  opacity: 0;
+}
+
+/* when checked, appear as a black dot above the text */
+
+#multi-city,
+#rount-trip,
+#one-way {
+  cursor: pointer;
 }
 
 #round-trip {
