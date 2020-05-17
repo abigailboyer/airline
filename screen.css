@@ -33,8 +33,9 @@ nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,su
 html {
   position: fixed;
   background-color: #fff;
-  background-size: 100% 21px;
-  background-image: linear-gradient(#ccc .05em, transparent 0);
+  background-size: 21px 21px;
+  background-image: linear-gradient(#ccc .05em, transparent .05em),
+                    linear-gradient(90deg, #ccc .05em, transparent .05em);
 }
 
 body {
@@ -95,11 +96,10 @@ header h3 {
 /* form styles */
 
 form {
-  width: 275px;
+  width: 250px;
   height: 421px;
 
-  /* for the submit button */
-  position: relative;
+  position: relative;  /* for the submit button */
 }
 
 input {
@@ -116,7 +116,8 @@ input[type="radio"] {
   cursor: pointer;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="date"] {
   width: 100%;
   font-size: 14px;
 }
@@ -126,6 +127,7 @@ label {
   font-size: 16px;
   line-height: 21px;
   margin-bottom: 7.875px;
+  display: block;
 }
 
 form li {
