@@ -94,6 +94,14 @@ header h3 {
 
 /* form styles */
 
+form {
+  width: 275px;
+  height: 421px;
+
+  /* for the submit button */
+  position: relative;
+}
+
 input {
   height: 31.5px;
   border-radius: 11px;
@@ -109,7 +117,8 @@ input[type="radio"] {
 }
 
 input[type="text"] {
-  width: 240px;
+  width: 100%;
+  font-size: 14px;
 }
 
 label {
@@ -128,11 +137,16 @@ form li {
 .continue input[type="submit"] {
   background-color: rgba(0, 0, 0, 0);
   text-decoration: underline;
+  font-size: 16px;
+  line-height: 21px;
   height: auto;
   width: auto;
-  padding: 10px;
+  padding: 10.5px;
   cursor: pointer;
-  float: right;
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 .topLabel label {
@@ -165,18 +179,18 @@ form li {
   transform: rotate(-90deg);
   transform-origin: top left;
   width: 441px;
-  top: 672px;
+  top: 693px;
   left: 0;
 
   color: #7d7d7d;
-  font-size: 16px;
+  font-size: 14px;
   text-align: right;
 }
 
 .tripType li {
   float: left;
-  width: 105px;
-  margin-right: 42px;
+  width: 126px;
+  margin-right: 21px;
 }
 
 .tripType label {
