@@ -85,12 +85,15 @@ footer {
 header {
   margin-top: 105px;
   margin-bottom: 63px;
-  width: 200px;
+  width: 231px;
+  height: 105px;
 }
 
 header h2,
 header h3 {
   margin-bottom: 21px;
+
+  background-color: pink;
 }
 
 /* form styles */
@@ -98,6 +101,7 @@ header h3 {
 form {
   width: 250px;
   height: 421px;
+  background-color: pink;
 
   position: relative;  /* for the submit button */
 }
@@ -180,9 +184,11 @@ form li {
   position: fixed;
   transform: rotate(-90deg);
   transform-origin: top left;
-  width: 441px;
+  width: 421px;
   top: 693px;
-  left: 0;
+  left: -21px;
+  background-color: red;
+  opacity: 50%;
 
   color: #7d7d7d;
   font-size: 14px;
@@ -190,9 +196,8 @@ form li {
 }
 
 .tripType li {
-  float: left;
-  width: 126px;
-  margin-right: 21px;
+  float: right;
+  margin-left: 10.5px;
 }
 
 .tripType label {
