@@ -3,6 +3,13 @@ a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,c
 nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section{display:block}html{line-height:1}body{line-height:inherit}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
 /* stylelint-enable */
 
+/* add baseline grid */
+html {
+  background-color: #fff;
+  background-size: 100% 18px;
+  background-image: linear-gradient(0deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px), linear-gradient(#ccc .05em, transparent .05em);
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
@@ -23,17 +30,17 @@ h4 {
 
 h1 {
   font-size: 36px;
-  line-height: 42px;
+  line-height: 45px;
 }
 
 h2 {
   font-size: 24px;
-  line-height: 28px;
+  line-height: 27px;
 }
 
 h3 {
   font-size: 18px;
-  line-height: 21px;
+  line-height: 21.5px;
   color: #7d7d7d;
 }
 
@@ -48,13 +55,13 @@ footer {
 }
 
 header {
-  margin-top: 100px;
+  margin-top: 90px;
   width: 200px;
 }
 
 header h3,
 header h2 {
-  margin-bottom: 30px;
+  margin-bottom: 32px;
 }
 
 .hidden {
@@ -63,8 +70,45 @@ header h2 {
 
 /* form styles */
 
+form {
+}
+
 input[type="radio"] {
   cursor: pointer;
+}
+
+input {
+  height: 30px;
+  border-radius: 11px;
+  border: none;
+  box-sizing: border-box;
+  background-color: #f2f2f2;
+  padding: 10px;
+  line-height: 18px;
+}
+
+label {
+  color: #565656;
+  margin-bottom: 6px;
+}
+
+form li {
+  margin-bottom: 24px;
+}
+
+/* reusable */
+
+.continue input[type="submit"] {
+  background-color: rgba(0, 0, 0, 0);
+  text-decoration: underline;
+  height: auto;
+  width: auto;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.topLabel label {
+  display: block;
 }
 
 /* page specific styles */
@@ -81,6 +125,7 @@ input[type="radio"] {
 }
 
 /* location selection */
+/* todo: adjust font sizes, set on baseline */
 
 /* rotate the list items and organize them on the left margin */
 .tripType {
@@ -88,15 +133,18 @@ input[type="radio"] {
   transform: rotate(-90deg);
   transform-origin: top left;
   width: 420px;
-  top: 600px;
-  left: 20px;
+  top: 700px;
+  left: 0;
   color: #7d7d7d;
+  font-size: 16px;
+  text-align: right;
 }
 
 .tripType li {
   float: left;
   width: 100px;
   margin-right: 40px;
+  background-color: red;
 }
 
 .tripType label {
@@ -107,13 +155,17 @@ input[type="radio"] {
   opacity: 0;
 }
 
-/* when checked, appear as a black dot above the text */
+h3 {
+  background-color: red;
+}
+
+/* todo in js: when checked, appear as a black dot above the text */
+.tripType input[type="radio"]:checked+label {
+  color: black;
+}
 
 #multi-city,
 #rount-trip,
 #one-way {
   cursor: pointer;
-}
-
-#round-trip {
 }
