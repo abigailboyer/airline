@@ -279,12 +279,32 @@ form li {
   display: inline-block;
 }
 
+/* seat selection */
 
+#airplane {
+  margin-bottom: 21px;
+}
 
+.row {
+  display: inline-block;
+  width: 100%;
+}
 
+.seats li {
+  float: left;
+  margin-right: 10px;
+}
 
+/* form results */
+#departingSeats,
+#returnSeats{
+  height: 100%;
+}
 
-
+#departingSeats .continue,
+#returnSeats .continue {
+  display: inline-block;
+}
 
 
 
