@@ -94,6 +94,10 @@ header h3 {
   margin-bottom: 21px;
 }
 
+figcaption {
+  opacity: 0;
+}
+
 /* form styles */
 
 form {
@@ -215,3 +219,90 @@ form li {
 #one-way {
   cursor: pointer;
 }
+
+/* flight selection */
+
+/* section */
+#departingSelection,
+#returnSelection {
+  /* totally different than other pages? idk probably bad */
+  position: absolute;
+  top: 189px;
+  left: 21px;
+  width: 100%;
+}
+
+/* figure container */
+.searchResults {
+}
+
+/* an individual result */
+.flight {
+  display: inline-block;
+  width: 100%;
+  height: 63px;
+}
+
+.flight ul {
+  float: left;
+  height: 100%;
+}
+
+/* flight result pieces */
+
+.duration {
+  margin-right: 21px;
+}
+
+.airport {
+  margin-right: 21px;
+}
+
+.time {
+  margin-right: 21px;
+}
+
+.cost {
+  position: absolute;
+  right: 0;
+}
+
+/* form results */
+#departingFlight,
+#returnFlight {
+  height: 100%;
+  width: 100%;
+}
+
+#departingFlight .continue,
+#returnFlight .continue {
+  display: inline-block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.
