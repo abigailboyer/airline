@@ -30,8 +30,8 @@ nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,su
 */
 
 /* add baseline grid */
+
 html {
-  position: fixed;
   background-color: #fff;
   background-size: 21px 21px;
   background-image: linear-gradient(#ccc .05em, transparent .05em),
@@ -79,7 +79,7 @@ a {
 main,
 header,
 footer {
-  margin-left: 65px;
+  margin-left: 42px;
 }
 
 header {
@@ -101,10 +101,10 @@ figcaption {
 /* form styles */
 
 form {
-  width: 250px;
-  height: 421px;
-
-  position: relative;  /* for the submit button */
+  width: 82%;
+  min-width: 250px;
+  max-width: 300px; /* idk */
+  background-color: lightblue;
 }
 
 input {
@@ -182,12 +182,12 @@ form li {
 
 /* rotate the list items and organize them on the left margin */
 .tripType {
-  position: fixed;
+  position: absolute;
   transform: rotate(-90deg);
   transform-origin: top left;
   width: 421px;
   top: 693px;
-  left: -21px;
+  left: 10.5px;
 
   color: #7d7d7d;
   font-size: 14px;
@@ -196,12 +196,13 @@ form li {
 
 .tripType li {
   float: right;
-  margin-left: 10.5px;
+  margin-left: 18px;
+  margin-bottom: 0;
 }
 
 .tripType label {
+  float: right;
   cursor: pointer;
-  padding: 10.5px;
 }
 
 .tripType input[type=radio] {
@@ -306,7 +307,19 @@ form li {
   display: inline-block;
 }
 
+/* payment info */
 
+#paymentInformation {
+  width: 100%;
+}
+
+.card li {
+  float: left;
+}
+
+.name input[type="text"]{
+  width: 50%;
+}
 
 
 
