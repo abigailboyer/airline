@@ -29,7 +29,7 @@ nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,su
 
 */
 
-/* add baseline grid */
+/* add baseline grid
 
 html {
   background-color: #fff;
@@ -37,6 +37,7 @@ html {
   background-image: linear-gradient(#ccc .05em, transparent .05em),
                     linear-gradient(90deg, #ccc .05em, transparent .05em);
 }
+*/
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -101,10 +102,9 @@ figcaption {
 /* form styles */
 
 form {
-  width: 82%;
+  width: 85%;
   min-width: 250px;
   max-width: 300px; /* idk */
-  background-color: lightblue;
 }
 
 input {
@@ -182,21 +182,14 @@ form li {
 
 /* rotate the list items and organize them on the left margin */
 .tripType {
-  position: absolute;
-  transform: rotate(-90deg);
-  transform-origin: top left;
-  width: 421px;
-  top: 693px;
-  left: 10.5px;
-
   color: #7d7d7d;
   font-size: 14px;
-  text-align: right;
+  text-align: left;
 }
 
 .tripType li {
-  float: right;
-  margin-left: 18px;
+  float: left;
+  margin-left: 0;
   margin-bottom: 0;
 }
 
@@ -313,16 +306,17 @@ form li {
   width: 100%;
 }
 
-.card li {
+.card {
+  display: block;
+}
+
+.name {
+  width: 30%;
+}
+
+.name input[type="text"]+label {
   float: left;
 }
-
-.name input[type="text"]{
-  width: 50%;
-}
-
-
-
 
 
 
