@@ -12,19 +12,23 @@
     <h2>How would you like to pay?</h2>
   </header>
   <main>
-    <section class="paymentInformation">
+    <section id="paymentInformation">
       <form action="review.html" method="get" id="paymentForm" novalidate>
         <ul>
           <li>
             <h5>Card Information</h5>
             <ul class="card">
               <li>
-                <label for="firstCard">First Name</label> <!-- to include or not to include -->
-                <input type="text" id="firstCard" placeholder="First Name" />
-              </li>
-              <li>
-                <label for="lastCard">Last Name</label>
-                <input type="text" id="lastCard" placeholder="Last Name" />
+                <ul class="name">
+                  <li>
+                    <label for="firstCard">First Name</label> <!-- to include or not to include -->
+                    <input type="text" id="firstCard" placeholder="First Name" />
+                  </li>
+                  <li>
+                    <label for="lastCard">Last Name</label>
+                    <input type="text" id="lastCard" placeholder="Last Name" />
+                  </li>
+                </ul>
               </li>
               <li>
                 <label for="cardNumber">Card Number</label>
