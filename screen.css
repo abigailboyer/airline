@@ -273,12 +273,18 @@ form li {
   height: 100%;
   width: 100%;
 }
-
-#departingFlight .continue,
-#returnFlight .continue {
-  display: inline-block;
-}
 */
+
+/* results form */
+
+#departingFlight li,
+#returnFlight li {
+  float: left;
+}
+
+.continue {
+  background-color: lightblue;
+}
 
 /* seat selection */
 
