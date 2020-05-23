@@ -105,6 +105,8 @@ form {
   width: 85%;
   min-width: 250px;
   max-width: 300px; /* idk */
+  height: auto;
+  position: absolute;
 }
 
 input {
@@ -131,7 +133,8 @@ input[type="date"] {
   font-family: inherit;
   padding: 0;
   padding-left: 10px;
-  color: #7d7d7d;
+  padding-right: 10px;
+  color: #7d7d7d; /* todo: add color jus to placeholder text not the typed text */
 }
 
 label {
@@ -156,11 +159,9 @@ form li {
   height: auto;
   width: auto;
   padding: 10.5px;
+  margin-top: 10.5px;
   cursor: pointer;
-
-  position: absolute;
-  right: 0;
-  bottom: 0;
+  float: right;
 }
 
 .topLabel label {
@@ -229,7 +230,8 @@ form li {
   position: absolute;
   top: 189px;
   left: 21px;
-  width: 100%;
+  right: 21px;
+  width: auto;
 }
 
 /* figure container */
@@ -238,8 +240,6 @@ form li {
 
 /* an individual result */
 .flight {
-  display: inline-block;
-  width: 100%;
   height: 63px;
 }
 
@@ -267,7 +267,7 @@ form li {
   right: 0;
 }
 
-/* form results */
+/* form results  -- idk what this is for or why its here
 #departingFlight,
 #returnFlight {
   height: 100%;
@@ -278,6 +278,7 @@ form li {
 #returnFlight .continue {
   display: inline-block;
 }
+*/
 
 /* seat selection */
 
