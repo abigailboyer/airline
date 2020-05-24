@@ -267,6 +267,10 @@ form li {
   display: block;
 }
 
+.aisle {
+  margin-right: 21px;
+}
+
 /* flight result pieces */
 
 .duration {
