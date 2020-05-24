@@ -260,14 +260,8 @@ form li {
 
 /* an individual result */
 .flight {
-}
-
-.flight a {
-  color: #7d7d7d;
-}
-
-.flight a:hover {
-  color: #000;
+  display: flex;
+  justify-content: space-between;
 }
 
 .flight ul {
@@ -275,41 +269,18 @@ form li {
   margin-bottom: 42px;
 }
 
-.flight li {
-}
-
-.flight a {
-  display: block;
-}
+/* TODO: don't know why hover isn't working. come back to it later */
 
 .aisle {
   margin-right: 21px;
 }
 
 /* flight result pieces */
-
+.time,
+.airport,
 .duration {
   margin-right: 21px;
 }
-
-.airport {
-  margin-right: 21px;
-}
-
-.time {
-  margin-right: 21px;
-}
-
-.cost {
-}
-
-/* form results  -- idk what this is for or why its here
-#departingFlight,
-#returnFlight {
-  height: 100%;
-  width: 100%;
-}
-*/
 
 /* results form */
 
