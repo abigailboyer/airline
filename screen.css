@@ -29,7 +29,7 @@ nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,su
 
 */
 
-/* add baseline grid
+/* add baseline grid */
 
 html {
   background-color: #fff;
@@ -37,7 +37,7 @@ html {
   background-image: linear-gradient(#ccc .05em, transparent .05em),
                     linear-gradient(90deg, #ccc .05em, transparent .05em);
 }
-*/
+
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -325,7 +325,7 @@ form li {
 
 /* form results */
 #departingSeats,
-#returnSeats{
+#returnSeats {
   height: 100%;
 }
 
@@ -336,32 +336,19 @@ form li {
 
 /* payment info */
 
-#paymentInformation {
-  width: 100%;
+/* can't figure out how to put the elements on the same line right now.
+   come back to that later */
+
+/* confirmation page */
+
+#view {
+  display: inline-block;
 }
 
-.card {
-  display: block;
-}
-
-.name {
-  width: 30%;
-}
-
-.name input[type="text"]+label {
+#view li {
   float: left;
+  margin-right: 21px;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
