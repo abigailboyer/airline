@@ -50,6 +50,9 @@ ol {
   list-style: none;
 }
 
+
+/* TODO: add line heights for every font-size declaration */
+
 h1,
 h2,
 h3,
@@ -71,6 +74,18 @@ h3 {
   font-size: 18px;
   line-height: 21px;
   color: #7d7d7d;
+}
+
+h4 {
+  font-size: 18px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  font-size: 14px;
 }
 
 a {
@@ -303,10 +318,6 @@ form li {
   float: left;
 }
 
-.continue {
-  background-color: lightblue;
-}
-
 /* seat selection */
 
 #airplane {
@@ -343,6 +354,7 @@ form li {
 
 #view {
   display: inline-block;
+  margin-bottom: 21px;
 }
 
 #view li {
@@ -350,7 +362,14 @@ form li {
   margin-right: 21px;
 }
 
+.review {
+  display: block;
+}
 
-
-
-.
+.re-airport li,
+.re-times li,
+.re-info li {
+  display: inline-block;
+  margin-bottom: 21px;
+  margin-right: 21px;
+}
