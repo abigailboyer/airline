@@ -80,7 +80,34 @@ $.noConflict();
   });
 
   $('#passengers').on('submit', function(e) {
-    console.log('submitted');
+    e.preventDefault();
+
+    /* translate string into number */
+    var adultInput = $('#adult').val();
+    var adult = parseInt(adultInput, 10);
+
+    var childInput = $('#child').val();
+    var child = parseInt(childInput, 10);
+
+    var seniorInput = $('#senior').val();
+    var senior = parseInt(seniorInput, 10);
+
+    /* set cookies (name, value) */
+    docCookies.setItem("adult", adult);
+    docCookies.setItem("senior", senior);
+    docCookies.setItem("child", child);
+
+    /* check that cookies are set */
+    console.log(docCookies.getItem("adult"));
+    console.log(docCookies.getItem("senior"));
+    console.log(docCookies.getItem("child"));
+
+    /* count tickets and set cookie */
+    var quantity = (adult + senior + child);
+    console.log("total tickets: " + quantity);
+
+    docCookies.setItem("quantity", quantity);
+    console.log("cookie: " + docCookies.getItem("quantity"));
 
   });
 
