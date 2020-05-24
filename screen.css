@@ -241,6 +241,12 @@ form li {
   cursor: pointer;
 }
 
+/* passenger type and number selection */
+
+.tickets input[type="text"]{
+  width: 50%; /* 50% of parent whose max width only goes up to 300px */
+}
+
 /* flight selection */
 
 /* section */
