@@ -74,7 +74,12 @@ h3 {
 }
 
 a {
+  color: inherit;
   text-decoration: none;
+}
+
+a:hover {
+  color: #7d7d7d;
 }
 
 main,
@@ -240,12 +245,26 @@ form li {
 
 /* an individual result */
 .flight {
-  height: 63px;
+}
+
+.flight a {
+  color: #7d7d7d;
+}
+
+.flight a:hover {
+  color: #000;
 }
 
 .flight ul {
-  float: left;
-  height: 100%;
+  display: inline-block;
+  margin-bottom: 42px;
+}
+
+.flight li {
+}
+
+.flight a {
+  display: block;
 }
 
 /* flight result pieces */
@@ -263,8 +282,6 @@ form li {
 }
 
 .cost {
-  position: absolute;
-  right: 0;
 }
 
 /* form results  -- idk what this is for or why its here
