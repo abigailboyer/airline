@@ -271,9 +271,6 @@ form li {
 
 /* TODO: don't know why hover isn't working. come back to it later */
 
-.aisle {
-  margin-right: 21px;
-}
 
 /* flight result pieces */
 .time,
@@ -303,6 +300,18 @@ form li {
 .seats li {
   float: left;
   margin-right: 10px;
+
+  background-color: #f2f2f2;
+  border-radius: 10px;
+}
+
+li .aisle {
+  margin-right: 21px;
+}
+
+.seats a {
+  display: block;
+  padding: 10px;
 }
 
 /* form results */
