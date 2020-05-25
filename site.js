@@ -4,7 +4,46 @@ var docCookies={getItem:function(e){return e?decodeURIComponent(document.cookie.
 $.noConflict();
 (function($) {
 
+  /* TODO:
+     trim all input values */
+
   /* one: location */
+
+  /* TODO:
+     handle multi-city/one-way
+     use city api to autofill and check for valid input */
+
+  /* submit function */
+  $("#location").on('submit', function(e){
+      /* validation */
+
+      /* check if empty */
+      var departingLocation = $('#departingLocation').val();
+      var returnLocation = $('#returnLocation').val();
+
+      console.log(departingLocation)
+      console.log(returnLocation)
+
+      if(departingLocation && returnLocation){
+        /* save cookies */
+        docCookies.setItem("departingLocation", departingLocation);
+        docCookies.setItem("returnLocation", returnLocation);
+
+        /* check cookies are saved */
+        console.log(docCookies.getItem("departingLocation"));
+        console.log(docCookies.getItem("returnLocation"));
+
+        /* continue to date selection */
+      } else {
+        e.preventDefault();
+
+        /* remove any previous error message */
+        $('.errormessage').remove();
+
+        /* add a new error message */
+        $('.locationInputs').before('<p class="errormessage">You must enter a city name.</p>');
+      }
+  });
 
   /* two: dates */
 
@@ -136,10 +175,10 @@ $.noConflict();
       /* add a new error message */
       $('.tickets').before('<p class="errormessage">No more than six tickets per customer.</p>');
     }
-
   });
 
   /* four: departing flight */
+
   $('#departingFlight').on('submit', function(e) {
     e.preventDefault();
 
