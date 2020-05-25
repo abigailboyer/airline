@@ -30,14 +30,14 @@ nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,su
 */
 
 /* add baseline grid */
-
+/*
 html {
   background-color: #fff;
   background-size: 21px 21px;
   background-image: linear-gradient(#ccc .05em, transparent .05em),
                     linear-gradient(90deg, #ccc .05em, transparent .05em);
 }
-
+*/
 
 body {
   font-family: 'Roboto', sans-serif;
