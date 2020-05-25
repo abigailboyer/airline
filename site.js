@@ -11,8 +11,11 @@ $.noConflict();
   /* three: passengers */
   /* TODO:
      prevent selecting more than 6 total tickets
-     error messages */
+     error messages
+     if the quantity is already at 6, don't let them add anymore tickets with
+     the +/- buttons */
 
+  /* add + and - buttons to the inputs  */
   $('#adult').after('<a class="more adult" href="#null">+</a>');
   $('#adult').before('<a class="less adult" href="#null">-</a>');
 
@@ -26,7 +29,6 @@ $.noConflict();
     var adultValue = $('#adult').val();
     var newAdultValue = parseInt(adultValue, 10) + 1;
     $('#adult').val(newAdultValue);
-    e.stopPropogation();  /* firefox error: stopPropogation not a function? */
     e.preventDefault();
   });
 
@@ -37,7 +39,6 @@ $.noConflict();
       newAdultValue = 0;
     }
     $('#adult').val(newAdultValue);
-    e.stopPropogation();
     e.preventDefault();
   });
 
@@ -45,7 +46,6 @@ $.noConflict();
     var childValue = $('#child').val();
     var newChildValue = parseInt(childValue, 10) + 1;
     $('#child').val(newChildValue);
-    e.stopPropogation();  /* firefox error: stopPropogation not a function? */
     e.preventDefault();
   });
 
@@ -56,7 +56,6 @@ $.noConflict();
       newChildValue = 0;
     }
     $('#child').val(newChildValue);
-    e.stopPropogation();
     e.preventDefault();
   });
 
@@ -64,7 +63,6 @@ $.noConflict();
     var seniorValue = $('#senior').val();
     var newSeniorValue = parseInt(seniorValue, 10) + 1;
     $('#senior').val(newSeniorValue);
-    e.stopPropogation();
     e.preventDefault();
   });
 
@@ -75,12 +73,12 @@ $.noConflict();
       newSeniorValue = 0;
     }
     $('#senior').val(newSeniorValue);
-    e.stopPropogation();
     e.preventDefault();
   });
 
+  /* submit function - create cookies */
+
   $('#passengers').on('submit', function(e) {
-    e.preventDefault();
 
     /* translate string into number */
     var adultInput = $('#adult').val();
@@ -109,9 +107,44 @@ $.noConflict();
     docCookies.setItem("quantity", quantity);
     console.log("cookie: " + docCookies.getItem("quantity"));
 
+    /* form validation */
+
+    /* if total number of tickets is > 7,
+       print error message "you can't have
+       more than six tickets at once" */
+    if(quantity < 7) {
+      /* check that there is at least one adult or senior ticket */
+      if (adult >= 1 || senior >= 1) {
+        /* continue */
+      } else {
+        e.preventDefault();
+
+        /* remove any previous error message */
+        $('.errormessage').remove();
+
+        /* add a new error message */
+        $('.tickets').before('<p class="errormessage">You must have at least one adult or senior ticket per order.</p>');
+      }
+
+    } else {
+      e.preventDefault();
+
+      /* remove any previous error message */
+      $('.errormessage').remove();
+
+      /* add a new error message */
+      $('.tickets').before('<p class="errormessage">No more than six tickets per customer.</p>');
+    }
   });
 
   /* four: departing flight */
+  $('#departingFlight').on('submit', function(e) {
+    e.preventDefault();
+
+    console.log(docCookies.getItem("quantity"));
+    console.log(docCookies.getItem("adult"));
+  });
+
 
   /* five: return flight */
 
