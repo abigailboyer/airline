@@ -13,7 +13,8 @@ $.noConflict();
      prevent selecting more than 6 total tickets
      error messages
      if the quantity is already at 6, don't let them add anymore tickets with
-     the +/- buttons */
+     the +/- buttons
+     add validation to make sure inputs aren't null or letters */
 
   /* add + and - buttons to the inputs  */
   $('#adult').after('<a class="more adult" href="#null">+</a>');
@@ -76,46 +77,46 @@ $.noConflict();
     e.preventDefault();
   });
 
-  /* submit function - create cookies */
+  /* submit function */
 
   $('#passengers').on('submit', function(e) {
-
-    /* translate string into number */
-    var adultInput = $('#adult').val();
-    var adult = parseInt(adultInput, 10);
-
-    var childInput = $('#child').val();
-    var child = parseInt(childInput, 10);
-
-    var seniorInput = $('#senior').val();
-    var senior = parseInt(seniorInput, 10);
-
-    /* set cookies (name, value) */
-    docCookies.setItem("adult", adult);
-    docCookies.setItem("senior", senior);
-    docCookies.setItem("child", child);
-
-    /* check that cookies are set */
-    console.log(docCookies.getItem("adult"));
-    console.log(docCookies.getItem("senior"));
-    console.log(docCookies.getItem("child"));
-
-    /* count tickets and set cookie */
-    var quantity = (adult + senior + child);
-    console.log("total tickets: " + quantity);
-
-    docCookies.setItem("quantity", quantity);
-    console.log("cookie: " + docCookies.getItem("quantity"));
-
     /* form validation */
 
-    /* if total number of tickets is > 7,
-       print error message "you can't have
-       more than six tickets at once" */
+    /* check that there are less than 7 ticket
+       check that there is at least one senior or adult
+       then save the cookie */
     if(quantity < 7) {
-      /* check that there is at least one adult or senior ticket */
       if (adult >= 1 || senior >= 1) {
-        /* continue */
+        /* save cookies */
+
+        /* translate string into number */
+        var adultInput = $('#adult').val();
+        var adult = parseInt(adultInput, 10);
+
+        var childInput = $('#child').val();
+        var child = parseInt(childInput, 10);
+
+        var seniorInput = $('#senior').val();
+        var senior = parseInt(seniorInput, 10);
+
+        /* set cookies (name, value) */
+        docCookies.setItem("adult", adult);
+        docCookies.setItem("senior", senior);
+        docCookies.setItem("child", child);
+
+        /* check that cookies are set */
+        console.log(docCookies.getItem("adult"));
+        console.log(docCookies.getItem("senior"));
+        console.log(docCookies.getItem("child"));
+
+        /* count tickets and set cookie */
+        var quantity = (adult + senior + child);
+        console.log("total tickets: " + quantity);
+
+        docCookies.setItem("quantity", quantity);
+        console.log("cookie: " + docCookies.getItem("quantity"));
+
+        /* continue to departing flight selection */
       } else {
         e.preventDefault();
 
@@ -135,6 +136,7 @@ $.noConflict();
       /* add a new error message */
       $('.tickets').before('<p class="errormessage">No more than six tickets per customer.</p>');
     }
+
   });
 
   /* four: departing flight */
