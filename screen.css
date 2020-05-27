@@ -321,11 +321,6 @@ li .aisle {
 }
 
 /* form results */
-#departingSeats,
-#returnSeats {
-  height: 100%;
-}
-
 #departingSeats .continue,
 #returnSeats .continue {
   display: inline-block;
