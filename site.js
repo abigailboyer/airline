@@ -52,48 +52,49 @@ $.noConflict();
        add in interactive calendar
        figure out whether to save date as string or object or both   */
 
-  /* set month globally so I can reuse it in the switch function */
+  /* set month and date globally so I can reuse them in the other functions */
   var month;
+  var dateString;
 
   /* switch number to month */
   /* eventually find a better way to do this */
   function monthSwitch() {
     switch (month) {
       case 1:
-        month = 'January';
+        month = "January";
         break;
       case 2:
-        month = 'February';
+        month = "February";
         break;
       case 3:
-        month = 'March';
+        month = "March";
         break;
       case 4:
-        month = 'April';
+        month = "April";
         break;
       case 5:
-        month = 'May';
+        month = "May";
         break;
       case 6:
-        month = 'June';
+        month = "June";
         break;
       case 7:
-        month = 'July';
+        month = "July";
         break;
       case 8:
-        month = 'August';
+        month = "August";
         break;
       case 9:
-        month = 'September';
+        month = "September";
         break;
       case 10:
-        month = 'October';
+        month = "October";
         break;
       case 11:
-        month = 'November';
+        month = "November";
         break;
       case 12:
-        month = 'December';
+        month = "December";
         break;
       default:
         console.log("month switch didn't work");
@@ -101,11 +102,45 @@ $.noConflict();
     }
   }
 
+  /* taken from stackoverflow because I couldn't have have done any better myself
+     https://stackoverflow.com/questions/6177975/how-to-validate-date-with-format-mm-dd-yyyy-in-javascript  */
+  function isValidDate() {
+    /* check date pattern format as mm/dd/yyyy */
+    if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString)) {
+      console.log("here");
+      return false;
+    }
+
+    /* parse date parts to integers */
+    var parts = dateString.split("/");
+    var day = parseInt(parts[1], 10);
+    var month = parseInt(parts[0], 10);
+    var year = parseInt(parts[2], 10);
+
+    /* Check the ranges of month and year */
+    if(year < 1000 || year > 3000 || month == 0 || month > 12) {
+      console.log("here");
+      return false;
+    }
+
+    var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+
+    /* Adjust for leap years */
+    if(year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
+      monthLength[1] = 29;
+    }
+
+    /* Check the range of the day */
+    return day > 0 && day <= monthLength[month - 1];
+  }
+
   /* submit dates */
-  $('#dates').on('submit', function(e){
+  $('#dates').on('submit', function(e) {
     e.preventDefault();
     var departingDate = new Date($('#departingDate').val());
     var returnDate = new Date($('#returnDate').val());
+
+    console.log(departingDate);
 
     /* translate date input into day month and year for ease of use */
     var departingDay = departingDate.getDate() + 1;
@@ -126,16 +161,64 @@ $.noConflict();
     var departingDateString = month + ' ' + departingDay + ', ' + departingYear;
     console.log(departingDateString)
 
-    /* save that string to a cookie */
+    /* also a numeric one */
+    var departingDateNumber = departingMonth + '/' + departingDay + '/' + departingYear;
+    console.log(departingDateNumber)
+
+    /* save those to a cookie */
     docCookies.setItem("departingDate", departingDateString);
-    console.log("cookie: " + docCookies.getItem("departingDate"));
+    console.log("departing date cookie: " + docCookies.getItem("departingDate"));
+
+    docCookies.setItem("departingDateNumber", departingDateNumber);
+    console.log("departing date cookie: " + docCookies.getItem("departingDateNumber"));
 
     /* repeat for return date */
     month = returnMonth;
     monthSwitch();
+
     var returnDateString = month + ' ' + returnDay + ', ' + returnYear;
     docCookies.setItem("returnDate", returnDateString);
-    console.log("cookie: " + docCookies.getItem("returnDate"));
+    console.log("return date cookie: " + docCookies.getItem("returnDate"));
+
+    var returnDateNumber = returnMonth + '/' + returnDay + '/' + returnYear;
+    docCookies.setItem("returnDateNumber", returnDateNumber);
+    console.log("return date cookie: " + docCookies.getItem("returnDateNumber"));
+
+    /* validate */
+    dateString = departingDateNumber;
+    if (!isValidDate(dateString)){
+      console.log("false depart");
+
+      /* print error message */
+      e.preventDefault();
+
+      /* remove any previous error message */
+      $('.errormessage').remove();
+
+      /* add a new error message */
+      $('#departingDate').before('<p class="errormessage">Please enter a departure date.</p>');
+
+    } else {
+      console.log("true depart");
+
+      dateString = returnDateNumber;
+
+      if(!isValidDate(dateString)){
+        console.log("false return");
+
+        /* print error message */
+        e.preventDefault();
+
+        /* remove any previous error message */
+        $('.errormessage').remove();
+
+        /* add a new error message */
+        $('#returnDate').before('<p class="errormessage">Please enter a return date.</p>');
+
+      } else {
+        console.log("true return");
+      }
+    }
 
   });
 
