@@ -293,24 +293,41 @@ $.noConflict();
   /* submit function */
 
   $('#passengers').on('submit', function(e) {
-    /* form validation */
+    /* translate string into number */
+    var adultInput = $('#adult').val();
+    var adult = parseInt(adultInput, 10);
 
-    /* check that there are less than 7 ticket
+    var childInput = $('#child').val();
+    var child = parseInt(childInput, 10);
+
+    var seniorInput = $('#senior').val();
+    var senior = parseInt(seniorInput, 10);
+
+    /* count tickets */
+    var quantity = (adult + senior + child);
+    console.log("total tickets: " + quantity);
+
+    /* form validation */
+    /* check that there are less than 7 tickets
        check that there is at least one senior or adult
        then save the cookie */
-    if(quantity < 7) {
+
+    if(quantity > 6) {
+      console.log("Error: no more than 6 tickets per customer.");
+      e.preventDefault();
+
+      /* remove any previous error message */
+      $('.errormessage').remove();
+
+      /* add a new error message */
+      $('.tickets').before('<p class="errormessage">No more than six tickets per customer.</p>');
+
+    } else {
+      console.log("There are less than 7 tickets.");
+
       if (adult >= 1 || senior >= 1) {
-        /* save cookies */
-
-        /* translate string into number */
-        var adultInput = $('#adult').val();
-        var adult = parseInt(adultInput, 10);
-
-        var childInput = $('#child').val();
-        var child = parseInt(childInput, 10);
-
-        var seniorInput = $('#senior').val();
-        var senior = parseInt(seniorInput, 10);
+        console.log("There is at least one adult or senior ticket.");
+        /* since everything's fine, set the cookies */
 
         /* set cookies (name, value) */
         docCookies.setItem("adult", adult);
@@ -322,15 +339,11 @@ $.noConflict();
         console.log(docCookies.getItem("senior"));
         console.log(docCookies.getItem("child"));
 
-        /* count tickets and set cookie */
-        var quantity = (adult + senior + child);
-        console.log("total tickets: " + quantity);
-
         docCookies.setItem("quantity", quantity);
-        console.log("cookie: " + docCookies.getItem("quantity"));
+        console.log("quantity cookie: " + docCookies.getItem("quantity"));
 
-        /* continue to departing flight selection */
       } else {
+        console.log("Error: you must have at least one adult or senior.");
         e.preventDefault();
 
         /* remove any previous error message */
@@ -339,15 +352,6 @@ $.noConflict();
         /* add a new error message */
         $('.tickets').before('<p class="errormessage">You must have at least one adult or senior ticket per order.</p>');
       }
-
-    } else {
-      e.preventDefault();
-
-      /* remove any previous error message */
-      $('.errormessage').remove();
-
-      /* add a new error message */
-      $('.tickets').before('<p class="errormessage">No more than six tickets per customer.</p>');
     }
   });
 
