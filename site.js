@@ -136,7 +136,6 @@ $.noConflict();
 
   /* submit dates */
   $('#dates').on('submit', function(e) {
-    e.preventDefault();
     var departingDate = new Date($('#departingDate').val());
     var returnDate = new Date($('#returnDate').val());
 
