@@ -47,6 +47,98 @@ $.noConflict();
 
   /* two: dates */
 
+    /* TODO:
+       make sure date is today or in the future
+       add in interactive calendar
+       figure out whether to save date as string or object or both   */
+
+  /* set month globally so I can reuse it in the switch function */
+  var month;
+
+  /* switch number to month */
+  /* eventually find a better way to do this */
+  function monthSwitch() {
+    switch (month) {
+      case 1:
+        month = 'January';
+        break;
+      case 2:
+        month = 'February';
+        break;
+      case 3:
+        month = 'March';
+        break;
+      case 4:
+        month = 'April';
+        break;
+      case 5:
+        month = 'May';
+        break;
+      case 6:
+        month = 'June';
+        break;
+      case 7:
+        month = 'July';
+        break;
+      case 8:
+        month = 'August';
+        break;
+      case 9:
+        month = 'September';
+        break;
+      case 10:
+        month = 'October';
+        break;
+      case 11:
+        month = 'November';
+        break;
+      case 12:
+        month = 'December';
+        break;
+      default:
+        console.log("month switch didn't work");
+        break;
+    }
+  }
+
+  /* submit dates */
+  $('#dates').on('submit', function(e){
+    e.preventDefault();
+    var departingDate = new Date($('#departingDate').val());
+    var returnDate = new Date($('#returnDate').val());
+
+    /* translate date input into day month and year for ease of use */
+    var departingDay = departingDate.getDate() + 1;
+    var departingMonth = departingDate.getMonth() + 1;
+    var departingYear = departingDate.getFullYear();
+
+    var returnDay = returnDate.getDate() + 1;
+    var returnMonth = returnDate.getMonth() + 1;
+    var returnYear = returnDate.getFullYear();
+
+    /* switch number for month */
+    month = departingMonth;
+    console.log("month before switch: " + month);
+    monthSwitch();
+    console.log("month after switch: " + month);
+
+    /* create a string with that date */
+    var departingDateString = month + ' ' + departingDay + ', ' + departingYear;
+    console.log(departingDateString)
+
+    /* save that string to a cookie */
+    docCookies.setItem("departingDate", departingDateString);
+    console.log("cookie: " + docCookies.getItem("departingDate"));
+
+    /* repeat for return date */
+    month = returnMonth;
+    monthSwitch();
+    var returnDateString = month + ' ' + returnDay + ', ' + returnYear;
+    docCookies.setItem("returnDate", returnDateString);
+    console.log("cookie: " + docCookies.getItem("returnDate"));
+
+  });
+
   /* three: passengers */
   /* TODO:
      prevent selecting more than 6 total tickets
@@ -190,6 +282,9 @@ $.noConflict();
   /* five: return flight */
 
   /* six: departing seats */
+
+  /* todo: "you picked too many seats. do you need another ticket?
+     and then it's just the ticket # form again" */
 
   /* seven: returning seats */
 
