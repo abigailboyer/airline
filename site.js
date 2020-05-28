@@ -382,7 +382,8 @@ $.noConflict();
   /* six: departing seats */
   /* TODO:
      add option to change ticket number selection when you select the wrong
-     wrong number of seats*/
+     wrong number of seats
+     figure out how to remove the item from the array once it's been deselected :) */
 
   var selected = [];
   var seats;
@@ -390,11 +391,9 @@ $.noConflict();
   $('#airplane a').on('click', function(e) {
     e.preventDefault();
 
-    /* if the selected seat number is greater than the total quantity of tickets */
     var quantity = docCookies.getItem("quantity");
-    console.log(quantity);
+    var selectedSeats = $('.selected').length;
 
-    /* if <a> has the class unavailable, error message */
     if ($(this).hasClass('unavailable')) {
       console.log("Unavailable or already selected seat.");
       return;
@@ -405,35 +404,30 @@ $.noConflict();
     /* switch from selected to unselected on cick */
     $(this).toggleClass('selected');
 
-    /* check each item with selected class, add to array */
-    $('.selected').each(function() {
+    /* if the number of selected seats is bigger than the total number of tickets
+       minus one because the array length is always 1 higher than the ticket total */
+    if (selectedSeats > (quantity - 1)) {
+      console.log("too many");
+      e.preventDefault();
 
-      /* if the number of selected seats is bigger than the total number of tickets
-         minus one because the array length is always 1 higher than the ticket total */
-      if (selected.length > (quantity - 1)) {
-        console.log("too many");
-        e.preventDefault();
+      $('.errormessage').remove();
+      $('#seatSelection').before('<p class="errormessage">You have selected too many seats.</p>');
 
-        $('.errormessage').remove();
-        $('#seatSelection').before('<p class="errormessage">You have selected too many seats.</p>');
-
-        $(this).removeClass('.selected');
-      }
-
-      console.log("adding selected seat to array");
-      var seat = $(this).attr('href').substring(1);     /* TODO: look this up later bc I don't understand what it does */
-      if (selected.includes(seat) === false) selected.push(seat); /* so values aren't repeated */
+      $(this).removeClass();
+    }
   });
 
-    console.log(selected)
-  });
-
-  /* when you click on a selected one, it unselects
-     and is removed from the input on the bottom */
-
-
-  $('#departingSeatSelection').on('submit', function(e) {
+  $('#departingSeats').on('submit', function(e) {
     e.preventDefault();
+    selected = [];
+
+    $('.selected').each(function() {
+      var seat = $(this).attr('href').substring(1);
+      if (selected.includes(seat) === false) selected.push(seat); /* so values aren't repeated */
+    });
+
+    console.log(selected);
+
     /* validate form */
 
     /* make sure enough tickets have been selected to match quantity */
