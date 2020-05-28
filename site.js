@@ -392,47 +392,41 @@ $.noConflict();
 
     /* if the selected seat number is greater than the total quantity of tickets */
     var quantity = docCookies.getItem("quantity");
+    console.log(quantity);
 
-    /* if the number of selected seats is bigger than the total number of tickets
-       minus one because the array length is always 1 higher than the ticket total */
-    if (selected.length > (quantity - 1)) {
-      console.log("too many");
-      e.preventDefault();
-
-      $('.errormessage').remove();
-      $('#seatSelection').before('<p class="errormessage">You have selected too many seats.</p>');
-
-      if ($(this).hasClass('unavailable')) {
-        return;
-      } else {
-        /* best way to do this?? idk if want to remove all the classes at once */
-        $(this).removeClass();
-      }
+    /* if <a> has the class unavailable, error message */
+    if ($(this).hasClass('unavailable')) {
+      console.log("Unavailable or already selected seat.");
+      return;
     } else {
-      /* if <a> has the class unavailable, error message */
-      if ($(this).hasClass('unavailable')) {
-        console.log("Unavailable or already selected seat.");
-        return;
-      } else {
-        console.log("Available seat.");
+      console.log("Available seat.");
+    }
+
+    /* switch from selected to unselected on cick */
+    $(this).toggleClass('selected');
+
+    /* check each item with selected class, add to array */
+    $('.selected').each(function() {
+
+      /* if the number of selected seats is bigger than the total number of tickets
+         minus one because the array length is always 1 higher than the ticket total */
+      if (selected.length > (quantity - 1)) {
+        console.log("too many");
+        e.preventDefault();
+
+        $('.errormessage').remove();
+        $('#seatSelection').before('<p class="errormessage">You have selected too many seats.</p>');
+
+        $(this).removeClass('.selected');
       }
 
-      /* switch from selected to unselected on cick */
-      $(this).toggleClass('selected');
-
-      /* check each item with selected class, add to array */
-      $('.selected').each(function() {
-        console.log("adding selected seat to array");
-        var seat = $(this).attr('href').substring(1);     /* TODO: look this up later bc I don't understand what it does */
-        if (selected.includes(seat) === false) selected.push(seat); /* so values aren't repeated */
-      });
-      console.log(selected)
-    }
+      console.log("adding selected seat to array");
+      var seat = $(this).attr('href').substring(1);     /* TODO: look this up later bc I don't understand what it does */
+      if (selected.includes(seat) === false) selected.push(seat); /* so values aren't repeated */
   });
 
-  $('.selected').on('click', function(e) {
-    console.log("this is selected");
-  })
+    console.log(selected)
+  });
 
   /* when you click on a selected one, it unselects
      and is removed from the input on the bottom */
@@ -440,7 +434,6 @@ $.noConflict();
 
   $('#departingSeatSelection').on('submit', function(e) {
     e.preventDefault();
-
     /* validate form */
 
     /* make sure enough tickets have been selected to match quantity */
