@@ -249,7 +249,7 @@ $.noConflict();
   $('.less.adult').on('click', function(e) {
     var adultValue = $('#adult').val();
     var newAdultValue = parseInt(adultValue, 10)-1;
-    if(newAdultValue < 0) {
+    if (newAdultValue < 0) {
       newAdultValue = 0;
     }
     $('#adult').val(newAdultValue);
@@ -266,7 +266,7 @@ $.noConflict();
   $('.less.child').on('click', function(e) {
     var childValue = $('#child').val();
     var newChildValue = parseInt(childValue, 10)-1;
-    if(newChildValue < 0) {
+    if (newChildValue < 0) {
       newChildValue = 0;
     }
     $('#child').val(newChildValue);
@@ -283,15 +283,14 @@ $.noConflict();
   $('.less.senior').on('click', function(e) {
     var seniorValue = $('#senior').val();
     var newSeniorValue = parseInt(seniorValue, 10) - 1;
-    if(newSeniorValue < 0) {
+    if (newSeniorValue < 0) {
       newSeniorValue = 0;
     }
     $('#senior').val(newSeniorValue);
     e.preventDefault();
   });
 
-  /* submit function */
-
+  /* submit ticket numbers and passenger types */
   $('#passengers').on('submit', function(e) {
     /* translate string into number */
     var adultInput = $('#adult').val();
@@ -312,7 +311,7 @@ $.noConflict();
        check that there is at least one senior or adult
        then save the cookie */
 
-    if(quantity > 6) {
+    if (quantity > 6) {
       console.log("Error: no more than 6 tickets per customer.");
       e.preventDefault();
 
@@ -357,17 +356,86 @@ $.noConflict();
 
   /* four: departing flight */
 
-  $('#departingFlight').on('submit', function(e) {
+  /* insert selection into input
+     erase old input and put in new one every time you click
+     validate text input with regex maybe so its in the right format
+     save cookie of choice
+     repeat for return flight selection */
+
+  /* <a> onclick */
+  /* .searchResults a or #departingSelection a and repeat it for return? */
+  /*$('.searchResults a').on('click', function(e) {
     e.preventDefault();
 
-    console.log(docCookies.getItem("quantity"));
-    console.log(docCookies.getItem("adult"));
   });
+
+  $('#departingFlight').on('submit', function(e) {
+    e.preventDefault();
+    console.log(docCookies.getItem("quantity"));
+
+
+  });*/
 
 
   /* five: return flight */
 
   /* six: departing seats */
+  /* TODO:
+     add option to change ticket number selection when you select the wrong
+     wrong number of seats*/
+
+  var selected = [];
+  var seats;
+
+  $('#airplane a').on('click', function(e) {
+    /* if the selected seat number is greater than the total quantity of tickets */
+    var quantity = docCookies.getItem("quantity");
+
+    /* if the number of selected seats is bigger than the total number of tickets
+       minus one because the array length is always 1 higher than the ticket total */
+    if (selected.length > (quantity - 1)) {
+      console.log("too many");
+      e.preventDefault();
+
+      $('.errormessage').remove();
+      $('#seatSelection').before('<p class="errormessage">You have selected too many seats.</p>');
+
+      if ($(this).hasClass('unavailable')) {
+        /* do nothing */
+      } else {
+        /* best way to do this?? idk if want to remove all the classes at once */
+        $(this).removeClass();
+      }
+
+    } else {
+      /* if <a> has the class unavailable, error message */
+      if ($(this).hasClass('unavailable')) {
+        console.log("Unavailable or already selected seat.");
+      } else {
+        console.log("Available seat.");
+        /* switch from selected to unselected on cick */
+        $(this).toggleClass('selected');
+      }
+
+      /* check each item with selected class, add to array */
+      $('.selected').each(function() {
+        console.log("adding selected seat to array");
+        var seat = $(this).attr('href').substring(1);     /* TODO: look this up later bc I don't understand what it does */
+        if (selected.includes(seat) === false) selected.push(seat); /* so values aren't repeated */
+      });
+      console.log(selected)
+    }
+  });
+
+  /* when you click on a selected one, it unselects
+     and is removed from the input on the bottom */
+
+
+  $('#departingSeatSelection').on('submit', function(e) {
+    e.preventDefault();
+
+    /* validate form */
+  });
 
   /* todo: "you picked too many seats. do you need another ticket?
      and then it's just the ticket # form again" */
