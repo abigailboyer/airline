@@ -401,33 +401,35 @@ $.noConflict();
       console.log("Available seat.");
     }
 
-    /* switch from selected to unselected on cick */
-    $(this).toggleClass('selected');
+    if($(this).hasClass('selected')){
+      $(this).toggleClass('selected');
+    } else {
+      /* if the number of selected seats is bigger than the total number of tickets
+         minus one because the array length is always 1 higher than the ticket total */
+      if (selectedSeats > (quantity - 1)) {
+        console.log("too many");
+        e.preventDefault();
 
-    /* if the number of selected seats is bigger than the total number of tickets
-       minus one because the array length is always 1 higher than the ticket total */
-    if (selectedSeats > (quantity - 1)) {
-      console.log("too many");
-      e.preventDefault();
-
-      $('.errormessage').remove();
-      $('#seatSelection').before('<p class="errormessage">You have selected too many seats.</p>');
-
-      $(this).removeClass();
+        $('.errormessage').remove();
+        $('#seatSelection').before('<p class="errormessage">You have selected too many seats.</p>');
+      } else {
+        /* switch from selected to unselected on cick */
+        $(this).toggleClass('selected');
+      }
     }
-  });
-
-  $('#departingSeats').on('submit', function(e) {
-    e.preventDefault();
-    selected = [];
 
     $('.selected').each(function() {
       var seat = $(this).attr('href').substring(1);
       if (selected.includes(seat) === false) selected.push(seat); /* so values aren't repeated */
     });
 
-    console.log(selected);
+        console.log(selected);
 
+  });
+
+  $('#departingSeats').on('submit', function(e) {
+    e.preventDefault();
+    selected = [];
     /* validate form */
 
     /* make sure enough tickets have been selected to match quantity */
