@@ -320,6 +320,15 @@ li .aisle {
   padding: 10px;
 }
 
+.unavailable {
+  background-color: grey;
+  border-radius: 10px;
+}
+
+.selected {
+  background-color: red;
+}
+
 /* form results */
 #departingSeats .continue,
 #returnSeats .continue {
