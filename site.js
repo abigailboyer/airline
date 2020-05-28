@@ -388,6 +388,8 @@ $.noConflict();
   var seats;
 
   $('#airplane a').on('click', function(e) {
+    e.preventDefault();
+
     /* if the selected seat number is greater than the total quantity of tickets */
     var quantity = docCookies.getItem("quantity");
 
@@ -401,21 +403,22 @@ $.noConflict();
       $('#seatSelection').before('<p class="errormessage">You have selected too many seats.</p>');
 
       if ($(this).hasClass('unavailable')) {
-        /* do nothing */
+        return;
       } else {
         /* best way to do this?? idk if want to remove all the classes at once */
         $(this).removeClass();
       }
-
     } else {
       /* if <a> has the class unavailable, error message */
       if ($(this).hasClass('unavailable')) {
         console.log("Unavailable or already selected seat.");
+        return;
       } else {
         console.log("Available seat.");
-        /* switch from selected to unselected on cick */
-        $(this).toggleClass('selected');
       }
+
+      /* switch from selected to unselected on cick */
+      $(this).toggleClass('selected');
 
       /* check each item with selected class, add to array */
       $('.selected').each(function() {
@@ -427,6 +430,10 @@ $.noConflict();
     }
   });
 
+  $('.selected').on('click', function(e) {
+    console.log("this is selected");
+  })
+
   /* when you click on a selected one, it unselects
      and is removed from the input on the bottom */
 
@@ -435,6 +442,8 @@ $.noConflict();
     e.preventDefault();
 
     /* validate form */
+
+    /* make sure enough tickets have been selected to match quantity */
   });
 
   /* todo: "you picked too many seats. do you need another ticket?
