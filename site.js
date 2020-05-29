@@ -417,19 +417,18 @@ $.noConflict();
         $(this).toggleClass('selected');
       }
     }
+  });
+
+  $('#departingSeats').on('submit', function(e) {
+    e.preventDefault();
+    selected = [];
 
     $('.selected').each(function() {
       var seat = $(this).attr('href').substring(1);
       if (selected.includes(seat) === false) selected.push(seat); /* so values aren't repeated */
     });
 
-        console.log(selected);
-
-  });
-
-  $('#departingSeats').on('submit', function(e) {
-    e.preventDefault();
-    selected = [];
+    console.log(selected);
     /* validate form */
 
     /* make sure enough tickets have been selected to match quantity */
