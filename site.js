@@ -383,14 +383,15 @@ $.noConflict();
   /* TODO:
      add option to change ticket number selection when you select the wrong
      wrong number of seats
-     figure out how to remove the item from the array once it's been deselected :) */
+     figure out how to test for selection==quantity and for valid input w/o overlap  */
 
   $('#airplane a').on('click', function(e) {
     e.preventDefault();
 
     var selected = [];
     var seats;
-    var quantity = docCookies.getItem("quantity");
+    var quantityCookie = docCookies.getItem("quantity");
+    var quantity = parseInt(quantityCookie, 10);
     var selectedSeats = $('.selected').length;
 
     if ($(this).hasClass('unavailable')) {
@@ -427,15 +428,46 @@ $.noConflict();
     /* add seats to the form input */
     seats = selected.join(", ");
     $('#departingSeatSelection').val(seats);
+
+    /* save cookie */
+    docCookies.setItem("seats", seats);
+    console.log(docCookies.getItem("seats"));
   });
 
   $('#departingSeats').on('submit', function(e) {
-    e.preventDefault();
-    selected = [];
 
-    /* validate form */
+    var quantityCookie = docCookies.getItem("quantity");
+    var quantity = parseInt(quantityCookie, 10);
+    var selectedSeats = $('.selected').length;
+
+    /* TODO: these don't work at the same time bc of the order or something
+       figure it out later */
+
+    /* validate text input */
+    var regex = /([1-5][a-f], [1-5][1-f])|([1-5][a-f],[1-5][1-f])/
+    console.log(regex.test('1a, 1b')) /* returns true */
+    console.log(regex.test('1a,1b')) /* returns true */
+
+    if (regex.test($('#departingSeatSelection').val())){
+      console.log("valid");
+    } else {
+      console.log("entered invalid value");
+      e.preventDefault();
+      /* error message: invalid selection. Try it like this: 4B, 4C */
+    }
 
     /* make sure enough tickets have been selected to match quantity */
+    if (selectedSeats !== quantity) {
+      console.log("not enough tickets selected");
+      e.preventDefault();
+
+      /* remove any previous error message */
+      $('.errormessage').remove();
+
+      /* add a new error message */
+      $('#seatSelection').before('<p class="errormessage">You haven\'t selected enough tickets.</p>');
+    }
+
   });
 
   /* todo: "you picked too many seats. do you need another ticket?
