@@ -385,12 +385,11 @@ $.noConflict();
      wrong number of seats
      figure out how to remove the item from the array once it's been deselected :) */
 
-  var selected = [];
-  var seats;
-
   $('#airplane a').on('click', function(e) {
     e.preventDefault();
 
+    var selected = [];
+    var seats;
     var quantity = docCookies.getItem("quantity");
     var selectedSeats = $('.selected').length;
 
@@ -417,11 +416,6 @@ $.noConflict();
         $(this).toggleClass('selected');
       }
     }
-  });
-
-  $('#departingSeats').on('submit', function(e) {
-    e.preventDefault();
-    selected = [];
 
     $('.selected').each(function() {
       var seat = $(this).attr('href').substring(1);
@@ -429,6 +423,13 @@ $.noConflict();
     });
 
     console.log(selected);
+
+  });
+
+  $('#departingSeats').on('submit', function(e) {
+    e.preventDefault();
+    selected = [];
+
     /* validate form */
 
     /* make sure enough tickets have been selected to match quantity */
