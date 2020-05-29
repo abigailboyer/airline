@@ -380,6 +380,7 @@ $.noConflict();
   /* five: return flight */
 
   /* six: departing seats */
+  /* seven: returning seats */
   /* TODO:
      add option to change ticket number selection when you select the wrong
      wrong number of seats
@@ -425,16 +426,36 @@ $.noConflict();
 
     console.log(selected);
 
-    /* add seats to the form input */
-    seats = selected.join(", ");
-    $('#departingSeatSelection').val(seats);
+    /* to make this function reusable: if the selected item has a parent id of
+       departing then save as departing seats, if it has a parent id as return
+       then save cookie as return seats */
+    if($(this).parents('#seats-departing').length) {
+      console.log("departing");
 
-    /* save cookie */
-    docCookies.setItem("seats", seats);
-    console.log(docCookies.getItem("seats"));
+      /* add seats to the form input */
+      seats = selected.join(", ");
+      $('#departingSeatSelection').val(seats);
+
+      /* save cookie */
+      docCookies.setItem("seats", seats);
+      console.log(docCookies.getItem("seats"));
+
+    } else if ($(this).parents('#seats-return').length){
+      console.log("returning");
+
+      /* add seats to the form input */
+      seats = selected.join(", ");
+      $('#returnSeatSelection').val(seats);
+
+      /* save cookie */
+      docCookies.setItem("seats", seats);
+      console.log(docCookies.getItem("seats"));
+    } else {
+      console.log("error");
+    }
   });
 
-  $('#departingSeats').on('submit', function(e) {
+  $('#departingSeats, #returnSeats').on('submit', function(e) {
 
     var quantityCookie = docCookies.getItem("quantity");
     var quantity = parseInt(quantityCookie, 10);
@@ -448,7 +469,7 @@ $.noConflict();
     console.log(regex.test('1a, 1b')) /* returns true */
     console.log(regex.test('1a,1b')) /* returns true */
 
-    if (regex.test($('#departingSeatSelection').val())){
+    if (regex.test($('#departingSeatSelection, #returnSeatSelection').val())){
       console.log("valid");
     } else {
       console.log("entered invalid value");
@@ -472,8 +493,6 @@ $.noConflict();
 
   /* todo: "you picked too many seats. do you need another ticket?
      and then it's just the ticket # form again" */
-
-  /* seven: returning seats */
 
   /* eight: payment info */
 
