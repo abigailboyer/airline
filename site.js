@@ -424,6 +424,9 @@ $.noConflict();
 
     console.log(selected);
 
+    /* add seats to the form input */
+    seats = selected.join(", ");
+    $('#departingSeatSelection').val(seats);
   });
 
   $('#departingSeats').on('submit', function(e) {
