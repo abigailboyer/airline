@@ -355,29 +355,73 @@ $.noConflict();
   });
 
   /* four: departing flight */
+  /* five: returning flight */
 
   /* insert selection into input
      erase old input and put in new one every time you click
      validate text input with regex maybe so its in the right format
      save cookie of choice
-     repeat for return flight selection */
+     repeat for return flight selection
+     don't use an array to keep 1 flight */
 
-  /* <a> onclick */
-  /* .searchResults a or #departingSelection a and repeat it for return? */
-  /*$('.searchResults a').on('click', function(e) {
+  $('.searchResults a').on('click', function(e) {
     e.preventDefault();
 
+    var flightArray = [];
+    var selected = $('.selected').length  /* maybe change this class so it doesn't conflict with the seat selection */
+
+    if($(this).hasClass('selected')){
+      $(this).toggleClass('selected');
+    } else {
+      /* can't pick more than one flight at a time */
+      if (selected > 0) {
+        console.log("can't pick more than one flight");
+        e.preventDefault();
+      } else {
+        /* switch from selected to unselected on cick */
+        $(this).toggleClass('selected');
+      }
+    }
+
+    /* set flight variable to selection */
+    $('.selected').each(function() {
+      var flight = $(this).attr('href').substring(1);
+      if (flightArray.includes(flight) === false) flightArray.push(flight); /* so values aren't repeated */
+    });
+
+    console.log(flightArray);
+
+    if($(this).parents('#departingSelection').length) {
+      /* write selection to the form input */
+      $('#departingFlightSelection').val(flightArray);
+      console.log("dedd");
+    } else if($(this).parents('#returnFlightSelection').length) {
+      /* return */
+      console.log("ddd");
+    } else {
+      console.log("error");
+      return;
+    }
+
+    /* get flight details and save them to a cookie */
+    var duration = [];
+    var airport = [];
+    var time = [];
+    var cost = [];
+
+    $('.duration li').each(function() {
+      console.log($(this).text());
+    });
+
+    $('.flight ul li').each(function() {
+      console.log($(this).text());
+    });
   });
 
   $('#departingFlight').on('submit', function(e) {
     e.preventDefault();
-    console.log(docCookies.getItem("quantity"));
 
-
-  });*/
-
-
-  /* five: return flight */
+  });
 
   /* six: departing seats */
   /* seven: returning seats */
@@ -450,16 +494,17 @@ $.noConflict();
       /* save cookie */
       docCookies.setItem("seats", seats);
       console.log(docCookies.getItem("seats"));
-    } else {
-      console.log("error");
     }
   });
 
   $('#departingSeats, #returnSeats').on('submit', function(e) {
+    e.preventDefault();
 
     var quantityCookie = docCookies.getItem("quantity");
     var quantity = parseInt(quantityCookie, 10);
     var selectedSeats = $('.selected').length;
+
+    console.log();
 
     /* TODO: these don't work at the same time bc of the order or something
        figure it out later */
