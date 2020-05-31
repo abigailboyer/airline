@@ -548,7 +548,6 @@ $.noConflict();
   });
 
   $('#departingSeats, #returnSeats').on('submit', function(e) {
-    e.preventDefault();
 
     var quantityCookie = docCookies.getItem("quantity");
     var quantity = parseInt(quantityCookie, 10);
@@ -585,9 +584,6 @@ $.noConflict();
     }
 
   });
-
-  /* todo: "you picked too many seats. do you need another ticket?
-     and then it's just the ticket # form again" */
 
   /* eight: payment info */
 
