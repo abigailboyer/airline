@@ -357,11 +357,7 @@ $.noConflict();
   /* four: departing flight */
   /* five: returning flight */
 
-  /* insert selection into input
-     erase old input and put in new one every time you click
-     validate text input with regex maybe so its in the right format
-     save cookie of choice
-     repeat for return flight selection
+  /* add keyup functions for when the user has to type in the flight number
      don't use an array to keep 1 flight */
 
   $('.searchResults a').on('click', function(e) {
@@ -390,17 +386,17 @@ $.noConflict();
 
       console.log("flight number: " + flight);
 
-      /* look up flight information from selection */
+      /* get flight details from selection */
+      var duration;
+      var airport = [];
+      var departingAirport;
+      var arrivingAirport;
+      var time = [];
+      var departingTime;
+      var arrivingTime;
+      var cost;
+
       $('a[href="#' + flight + '"]').children('ul').each(function() {
-        /* get flight details and save them to a cookie */
-        var duration;
-        var airport = [];
-        var departingAirport;
-        var arrivingAirport;
-        var time = [];
-        var departingTime;
-        var arrivingTime;
-        var cost;
 
         if($(this).attr('class') == 'duration') {
           duration = $(this).text();
@@ -433,25 +429,47 @@ $.noConflict();
           cost = $(this).text();
           console.log("cost: " + cost);
         }
-
       });
-    });
 
-    if($(this).parents('#departingSelection').length) {
-      /* write selection to the form input */
-      $('#departingFlightSelection').val(flightArray);
-      console.log("dedd");
-    } else if($(this).parents('#returnFlightSelection').length) {
-      /* return */
-      console.log("ddd");
-    } else {
-      console.log("error");
-      return;
-    }
+      /* save flight details to cookies */
+      if($(this).parents('#departingSelection').length) {
+        /* write selection to the form input */
+        $('#departingFlightSelection').val(flightArray);
+
+        /* save cookies */
+        docCookies.setItem("d-flight", flight);
+        docCookies.setItem("d-duration", duration);
+        docCookies.setItem("d-departingAirport", departingAirport);
+        docCookies.setItem("d-arrivingAirport", arrivingAirport);
+        docCookies.setItem("d-departingTime", departingTime);
+        docCookies.setItem("d-arrivingTime", arrivingTime);
+        docCookies.setItem("d-cost", cost);
+
+      } else if($(this).parents('#returnSelection').length) {
+        /* write selection to the form input */
+        $('#returnFlightSelection').val(flightArray);
+
+        /* save cookies */
+        docCookies.setItem("r-flight", flight);
+        docCookies.setItem("r-duration", duration);
+        docCookies.setItem("r-departingAirport", departingAirport);
+        docCookies.setItem("r-arrivingAirport", arrivingAirport);
+        docCookies.setItem("r-departingTime", departingTime);
+        docCookies.setItem("r-arrivingTime", arrivingTime);
+        docCookies.setItem("r-cost", cost);
+
+      } else {
+        console.log("error");
+        return;
+      }
+    });
   });
 
   $('#departingFlight').on('submit', function(e) {
-    e.preventDefault();
+
+  });
+
+  $('#returningFlight').on('submit', function(e) {
 
   });
 
