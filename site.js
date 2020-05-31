@@ -383,13 +383,59 @@ $.noConflict();
       }
     }
 
-    /* set flight variable to selection */
     $('.selected').each(function() {
+      /* make flight selection into variable and add to selection array */
       var flight = $(this).attr('href').substring(1);
       if (flightArray.includes(flight) === false) flightArray.push(flight); /* so values aren't repeated */
-    });
 
-    console.log(flightArray);
+      console.log("flight number: " + flight);
+
+      /* look up flight information from selection */
+      $('a[href="#' + flight + '"]').children('ul').each(function() {
+        /* get flight details and save them to a cookie */
+        var duration;
+        var airport = [];
+        var departingAirport;
+        var arrivingAirport;
+        var time = [];
+        var departingTime;
+        var arrivingTime;
+        var cost;
+
+        if($(this).attr('class') == 'duration') {
+          duration = $(this).text();
+          console.log("duration: " + duration);
+        } else if($(this).attr('class') == 'airport') {
+          airport = $(this).text();
+          console.log("airport: " + airport);
+
+          /* get each li and add to separate variables */
+          airport = $(this).children();
+          departingAirport = airport.first().text();
+          arrivingAirport = airport.slice(1).text();
+
+          console.log(departingAirport);
+          console.log(arrivingAirport);
+
+        } else if($(this).attr('class') == 'time') {
+          time = $(this).text();
+          console.log("time: " + time);
+
+          /* separate array into departing and arriving variables */
+          time = $(this).children();
+          departingTime = time.first().text();
+          arrivingTime = time.slice(1).text();
+
+          console.log(departingTime);
+          console.log(arrivingTime);
+
+        } else if($(this).attr('class') == 'cost') {
+          cost = $(this).text();
+          console.log("cost: " + cost);
+        }
+
+      });
+    });
 
     if($(this).parents('#departingSelection').length) {
       /* write selection to the form input */
@@ -402,20 +448,6 @@ $.noConflict();
       console.log("error");
       return;
     }
-
-    /* get flight details and save them to a cookie */
-    var duration = [];
-    var airport = [];
-    var time = [];
-    var cost = [];
-
-    $('.duration li').each(function() {
-      console.log($(this).text());
-    });
-
-    $('.flight ul li').each(function() {
-      console.log($(this).text());
-    });
   });
 
   $('#departingFlight').on('submit', function(e) {
