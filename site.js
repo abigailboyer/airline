@@ -531,8 +531,8 @@ $.noConflict();
       $('#departingSeatSelection').val(seats);
 
       /* save cookie */
-      docCookies.setItem("seats", seats);
-      console.log(docCookies.getItem("seats"));
+      docCookies.setItem("d-seats", seats);
+      console.log(docCookies.getItem("d-seats"));
 
     } else if ($(this).parents('#seats-return').length){
       console.log("returning");
@@ -542,8 +542,8 @@ $.noConflict();
       $('#returnSeatSelection').val(seats);
 
       /* save cookie */
-      docCookies.setItem("seats", seats);
-      console.log(docCookies.getItem("seats"));
+      docCookies.setItem("r-seats", seats);
+      console.log(docCookies.getItem("r-seats"));
     }
   });
 
