@@ -192,6 +192,14 @@ form li {
   display: none;
 }
 
+.uppercase {
+  text-transform: uppercase;
+}
+
+.bold {
+  font-weight: bold;
+}
+
 /* page specific styles */
 
 #home li,
@@ -366,8 +374,4 @@ li .aisle {
   display: inline-block;
   margin-bottom: 21px;
   margin-right: 21px;
-}
-
-.bold {
-  font-weight: bold;
 }
