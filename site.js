@@ -5,7 +5,12 @@ $.noConflict();
 (function($) {
 
   /* TODO:
-     trim all input values */
+     trim all input values
+     keyup/press handling for form validation
+     handle submissions using keypress or something like that
+     test for browser compatibility
+     make error messages less obtrusive and prettier
+     use independent if statements for error testing so that the errors show up at the same time */
 
   /* one: location */
 
@@ -586,6 +591,169 @@ $.noConflict();
   });
 
   /* eight: payment info */
+  /* TODO:
+     finish regex/input-specific validation
+     save cookies
+     autofill billing and reservation name
+     autofill zip code
+     test error messages make sure they dont double up
+     make sure exp date is always in the future
+     edit the phrasing on the error messages to be more helpful */
+
+  $('#paymentForm').on('submit', function(e) {
+    e.preventDefault();
+
+    var firstCard = $('#firstCard').val();
+    var lastCard = $('#lastCard').val();
+    var cardNumber = $('#cardNumber').val();
+    var expiryDate = $('#expiryDate').val();
+    var cvv = $('#cvv').val();
+
+    var firstBilling = $('#firstBilling').val();
+    var lastBilling = $('#lastBilling').val();
+    var address1 = $('#address1').val();
+    var address2 = $('#address2').val();
+    var zip = $('#zip').val();
+    var emailBilling = $('#emailBilling').val();
+
+    var firstRes = $('#firstRes').val();
+    var lastRes = $('#lastRes').val();
+
+    /* remove any previous error message */
+    $('.errormessage').remove();
+
+    /* validate */
+    validate();
+
+    /* try validation in a function just mixin it up addin some flavor  */
+    function validate() {
+      var valid = true;
+
+      var nameRegex = /^[a-z ,.'-]+$/i;
+      var expiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+      var emailRegex = /^.+@.+\..+$/;  /* https://stackoverflow.com/a/4964766 */
+
+      /* TODO: figure out which validation method works better preventdefault or valid */
+
+      creditCardValidation();
+
+      function creditCardValidation(){
+        cardNumber = cardNumber.replace(/[ -]/g, '');
+        console.log(cardNumber);
+      }
+
+      if (firstCard == "") {
+        $('.name').before('<p class="errormessage">Please enter your first name.</p>');
+        e.preventDefault();
+      } else if (!(nameRegex.test(firstCard))) {
+        $('.name').before('<p class="errormessage">Your name can\'t contain numbers.</p>');
+        e.preventDefault();
+      }
+
+      if (lastCard == "") {
+        $('.name').before('<p class="errormessage">Please enter your last name.</p>');
+        e.preventDefault();
+      } else if (!(nameRegex.test(lastCard))) {
+        $('.name').before('<p class="errormessage">Your name can\'t contain numbers.</p>');
+        e.preventDefault();
+      }
+
+      if (cardNumber == "") {
+        $('#cardNumber').before('<p class="errormessage">Please enter your card number.</p>');
+        e.preventDefault();
+      } else if (isNaN(cardNumber) || (cardNumber.toString().length != 16)) {
+        $('#cardNumber').before('<p class="errormessage">Incorrect format</p>');
+        e.preventDefault();
+      }
+
+      if (expiryDate == "") {
+        $('#expiryDate').before('<p class="errormessage">Please enter your card expiration date.</p>');
+        e.preventDefault();
+      } else if (!(expiryRegex.test(expiryDate))) {
+        $('#expiryDate').before('<p class="errormessage">Incorrect format</p>');
+        e.preventDefault();
+      }
+
+      if (cvv == "") {
+        $('#cvv').before('<p class="errormessage">Please enter your card security code.</p>');
+        e.preventDefault();
+      } else if (isNaN(cvv) || cvv.toString().length != 3) {
+        $('#cvv').before('<p class="errormessage">Incorrect format.</p>');
+        e.preventDefault();
+      }
+
+      if (firstBilling == "") {
+        $('#firstBilling').before('<p class="errormessage">Please enter your first name.</p>');
+        e.preventDefault();
+      } else if (!(nameRegex.test(firstBilling))) {
+        $('#firstBilling').before('<p class="errormessage">Incorrect format</p>');
+        e.preventDefault();
+      }
+
+      if (lastBilling == "") {
+        $('#lastBilling').before('<p class="errormessage">Please enter your last name.</p>');
+        e.preventDefault();
+      } else if (!(nameRegex.test(lastBilling))) {
+        $('#lastBilling').before('<p class="errormessage">Incorrect format</p>');
+        e.preventDefault();
+      }
+
+      if (address1 == "") {
+        $('#address1').before('<p class="errormessage">Please enter your address.</p>');
+        e.preventDefault();
+      } else if (!(addressRegex.test(address1))) {
+        $('#address1').before('<p class="errormessage">Incorrect format</p>');
+        e.preventDefault();
+      }
+
+      if (city == "") {
+        $('#city').before('<p class="errormessage">Please enter your city.</p>');
+        e.preventDefault();
+      } else if (!(isNaN(city))) {
+        $('#city').before('<p class="errormessage">Incorrect format</p>');
+        e.preventDefault();
+      }
+
+      if (zip == "") {
+        $('#zip').before('<p class="errormessage">Please enter your zip code.</p>');
+        e.preventDefault();
+      } else if (isNaN(zip) || zip.toString().length != 4) {
+        $('#zip').before('<p class="errormessage">Incorrect format</p>');
+        e.preventDefault();
+      }
+
+      if (emailBilling == "") {
+        $('#emailBilling').before('<p class="errormessage">Please enter your email address.</p>');
+        e.preventDefault();
+      } else if (!(emailRegex.test(emailBilling))) {
+        $('#emailBilling').before('<p class="errormessage">Incorrect format</p>');
+        e.preventDefault();
+      }
+
+      if (firstRes == "") {
+        $('#firstRes').before('<p class="errormessage">Please enter your first name.</p>');
+        e.preventDefault();
+      } else if (!(nameRegex.test(firstRes))) {
+        $('#firstRes').before('<p class="errormessage">Incorrect format</p>');
+        e.preventDefault();
+      }
+
+      if (lastRes == "") {
+        $('#lastRes').before('<p class="errormessage">Please enter your last name.</p>');
+        e.preventDefault();
+      } else if (!(nameRegex.test(lastRes))) {
+        $('#lastRes').before('<p class="errormessage">Incorrect format</p>');
+        e.preventDefault();
+      }
+
+      if (!valid) {
+        e.preventDefault();
+      }
+    }
+
+  });
+
+
 
   /* nine: review */
 
