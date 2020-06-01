@@ -746,9 +746,30 @@ $.noConflict();
         e.preventDefault();
       }
 
-      if (!valid) {
+      if (valid) {
+        console.log("save cookie");
+        saveCookies();
+      } else {
         e.preventDefault();
       }
+    }
+
+    function saveCookies() {
+      docCookies.setItem("firstCard", firstCard);
+      docCookies.setItem("lastCard", lastCard);
+      docCookies.setItem("cardNumber", cardNumber);
+      docCookies.setItem("expiryDate", expiryDate);
+      docCookies.setItem("cvv", cvv);
+
+      docCookies.setItem("firstBilling", firstBilling);
+      docCookies.setItem("lastBilling", lastBilling);
+      docCookies.setItem("address1", address1);
+      docCookies.setItem("address2", address2);
+      docCookies.setItem("zip", zip);
+
+      docCookies.setItem("emailBilling", emailBilling);
+      docCookies.setItem("firstRes", firstRes);
+      docCookies.setItem("lastRes", lastRes);
     }
 
   });
