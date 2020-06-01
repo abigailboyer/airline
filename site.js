@@ -812,6 +812,39 @@ $.noConflict();
 
   /* add in the information from cookies */
 
+
+  /* set variables for cookie contents */
+  var departingLocation = docCookies.getItem("departingLocation");
+  var returnLocation = docCookies.getItem("returnLocation");
+  var departingDate = docCookies.getItem("departingDate");
+  var returnDate = docCookies.getItem("returnDate");
+  var quantity = docCookies.getItem("quantity");
+
+  var dflight = docCookies.getItem("d-flight");
+  var dduration = docCookies.getItem("d-duration");
+  var ddepartingAirport = docCookies.getItem("d-departingAirport");
+  var darrivingAirport = docCookies.getItem("d-arrivingAirport");
+  var ddepartingTime = docCookies.getItem("d-departingTime");
+  var darrivingTime = docCookies.getItem("d-arrivingTime");
+  var dcost = docCookies.getItem("d-cost");
+
+  var rflight = docCookies.getItem("r-flight");
+  var rduration = docCookies.getItem("r-duration");
+  var rdepartingAirport = docCookies.getItem("r-departingAirport");
+  var rarrivingAirport = docCookies.getItem("r-arrivingAirport");
+  var rdepartingTime = docCookies.getItem("r-departingTime");
+  var rarrivingTime = docCookies.getItem("r-arrivingTime");
+  var rcost = docCookies.getItem("r-cost");
+
+  var dseats = docCookies.getItem("d-seats");
+  var rseats = docCookies.getItem("r-seats");
+
+  /* set values on page = to those variables */
+  /* departing */
+
+
+
+
   /* ten: confirmation */
 
 
