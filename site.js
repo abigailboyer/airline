@@ -10,6 +10,8 @@ $.noConflict();
      handle submissions using keypress or something like that
      test for browser compatibility
      make error messages less obtrusive and prettier
+     add zip code api
+     add airport api so that mdw or lax or dfw gets set automatically depending on the city
      use independent if statements for error testing so that the errors show up at the same time */
 
   /* one: location */
@@ -762,8 +764,8 @@ $.noConflict();
       docCookies.setItem("address1", address1);
       docCookies.setItem("address2", address2);
       docCookies.setItem("zip", zip);
-
       docCookies.setItem("emailBilling", emailBilling);
+
       docCookies.setItem("firstRes", firstRes);
       docCookies.setItem("lastRes", lastRes);
 
@@ -774,7 +776,9 @@ $.noConflict();
   /* nine: review */
 
   /* TODO:
-     figure out alternative method for styling the different sections maybe radio buttons */
+     figure out alternative method for styling the different sections maybe radio buttons
+     add more cookies for arrival city and departure city for both depart and return flights
+     so that it's easier to transition into multi-city flights */
 
   /* hide menu if not selected (show departing info by default) */
   $('#returnReview').hide();
@@ -812,7 +816,6 @@ $.noConflict();
 
   /* add in the information from cookies */
 
-
   /* set variables for cookie contents */
   var departingLocation = docCookies.getItem("departingLocation");
   var returnLocation = docCookies.getItem("returnLocation");
@@ -839,9 +842,48 @@ $.noConflict();
   var dseats = docCookies.getItem("d-seats");
   var rseats = docCookies.getItem("r-seats");
 
+  var firstCard = docCookies.getItem(firstCard);
+  var lastCard = docCookies.getItem(lastCard);
+  var cardNumber = docCookies.getItem(cardNumber);
+  var expiryDate = docCookies.getItem(expiryDate);
+  var cvv = docCookies.getItem(cvv);
+
+  var firstBilling = docCookies.getItem(firstBilling);
+  var lastBilling = docCookies.getItem(lastBilling);
+  var address1 = docCookies.getItem(address1);
+  var address2 = docCookies.getItem(address2);
+  var zip = docCookies.getItem(zip);
+  var emailBilling = docCookies.getItem(emailBilling);
+
+  var firstRes = docCookies.getItem(firstRes);
+  var lastRes = docCookies.getItem(lastRes);
+
   /* set values on page = to those variables */
   /* departing */
+  $('.d-fromCity').text(departingLocation);
+  $('.d-toCity').text(returnLocation);
 
+  $('.d-times').find('h4').text(departingDate);
+  $('.d-fromTime').text(ddepartingTime);
+  $('.d-toTime').text(darrivingTime);
+
+  $('.d-flightNumber').text(dflight);
+  $('.d-ticketQuantity').text(quantity);
+  $('.d-ticketSeats').text(dseats);
+
+  /* return */
+  $('.r-fromCity').text(returnLocation);
+  $('.r-toCity').text(departingLocation);
+
+  $('.r-times').find('h4').text(returnDate);
+  $('.r-fromTime').text(rdepartingTime);
+  $('.r-toTime').text(rarrivingTime);
+
+  $('.r-flightNumber').text(rflight);
+  $('.r-ticketQuantity').text(quantity);
+  $('.r-ticketSeats').text(rseats);
+
+  /* payment */
 
 
 
