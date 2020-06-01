@@ -357,9 +357,12 @@ li .aisle {
   margin-right: 21px;
 }
 
-.re-airport li,
-.re-times li,
-.re-info li {
+.r-airport li,
+.r-times li,
+.r-info li,
+.d-airport li,
+.d-times li,
+.d-info li {
   display: inline-block;
   margin-bottom: 21px;
   margin-right: 21px;
