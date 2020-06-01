@@ -15,11 +15,60 @@
   <main>
     <nav id="view">
       <ul>
-        <li><a href="#">Return</a></li>
-        <li><a href="#">Departing</a></li>
-        <li><a href="#">Payment</a></li>
+        <li><a input="#" id="returnLink" class="display">Return</a></li>
+        <li><a href="#" id="departingLink" class="display">Departing</a></li>
+        <li><a href="#" id="paymentLink" class="display">Payment</a></li>
       </ul>
     </nav>
+
+    <section id="departingReview" class="review">
+      <ul>
+        <li>
+          <ul class="de-airport">
+            <li class="de-to">
+              <h5>DE</h5>
+              <h4>MDW</h4>
+              <h6 class="city">Chicago, IL</h6>
+            </li>
+            <li>
+              <h5>To</h5>
+              <h4>DFW</h4>
+              <h6 class="city">Dallas, TX</h6>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <ul class="re-times">
+            <li>
+              <h5>Departure</h5>
+              <h4>May 23</h4>
+              <h6 class="time">8:00 PM</h6>
+            </li>
+            <li>
+              <h5>Arrival</h5>
+              <h4>May 23</h4>
+              <h6 class="time">10:00 PM</h6>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <ul class="re-info">
+            <li>
+              <h5>Flight #</h5>
+              <h4>A203</h4>
+            </li>
+            <li>
+              <h5>Passengers</h5>
+              <h4>3</h4>
+            </li>
+            <li>
+              <h5>Seats</h5>
+              <h4>A1, A2, A3</h4>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </section>
 
     <section id="returnReview" class="review">
       <ul>
@@ -68,10 +117,6 @@
           </ul>
         </li>
       </ul>
-    </section>
-
-    <section id="departingReview" class="review">
-      <!-- duplicate above; js to select the menu option you want to see and displays either one -->
     </section>
 
     <section id="paymentReview" class="review">
