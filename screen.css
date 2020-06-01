@@ -364,3 +364,7 @@ li .aisle {
   margin-bottom: 21px;
   margin-right: 21px;
 }
+
+.bold {
+  font-weight: bold;
+}
