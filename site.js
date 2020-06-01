@@ -162,7 +162,7 @@ $.noConflict();
     console.log("month after switch: " + month);
 
     /* create a string with that date */
-    var departingDateString = month + ' ' + departingDay + ', ' + departingYear;
+    var departingDateString = month + ' ' + departingDay;
     console.log(departingDateString)
 
     /* also a numeric one */
@@ -180,7 +180,7 @@ $.noConflict();
     month = returnMonth;
     monthSwitch();
 
-    var returnDateString = month + ' ' + returnDay + ', ' + returnYear;
+    var returnDateString = month + ' ' + returnDay;
     docCookies.setItem("returnDate", returnDateString);
     console.log("return date cookie: " + docCookies.getItem("returnDate"));
 
@@ -636,7 +636,7 @@ $.noConflict();
 
       creditCardValidation();
 
-      function creditCardValidation(){
+      function creditCardValidation() {
         cardNumber = cardNumber.replace(/[ -]/g, '');
         console.log(cardNumber);
       }
@@ -773,6 +773,48 @@ $.noConflict();
 
   /* nine: review */
 
+  /* TODO:
+     figure out alternative method for styling the different sections maybe radio buttons */
+
+  /* hide menu if not selected (show departing info by default) */
+  $('#returnReview').hide();
+  $('#paymentReview').hide();
+
+  $('#returnLink').on('click', function(e) {
+    e.preventDefault();
+    $('#paymentReview').hide();
+    $('#departingReview').hide();
+    $('#returnReview').show();
+
+    /* add bold to the selected item */
+    $('#returnLink').toggleClass('bold');
+  });
+
+  $('#departingLink').on('click', function(e) {
+    e.preventDefault();
+    $('#paymentReview').hide();
+    $('#returnReview').hide();
+    $('#departingReview').show();
+
+    /* add bold to the selected item */
+    $('#departingLink').toggleClass('bold');
+  });
+
+  $('#paymentLink').on('click', function(e) {
+    e.preventDefault();
+    $('#returnReview').hide();
+    $('#departingReview').hide();
+    $('#paymentReview').show();
+
+    /* add bold to the selected item */
+    $('#paymentLink').toggleClass('bold');
+  });
+
+  /* add in the information from cookies */
+
   /* ten: confirmation */
+
+
+
 
 })(jQuery);
