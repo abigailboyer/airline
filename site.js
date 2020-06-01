@@ -601,7 +601,6 @@ $.noConflict();
      edit the phrasing on the error messages to be more helpful */
 
   $('#paymentForm').on('submit', function(e) {
-    e.preventDefault();
 
     var firstCard = $('#firstCard').val();
     var lastCard = $('#lastCard').val();
@@ -644,106 +643,103 @@ $.noConflict();
 
       if (firstCard == "") {
         $('.name').before('<p class="errormessage">Please enter your first name.</p>');
-        e.preventDefault();
+        valid = false;
       } else if (!(nameRegex.test(firstCard))) {
         $('.name').before('<p class="errormessage">Your name can\'t contain numbers.</p>');
-        e.preventDefault();
+        valid = false;
       }
 
       if (lastCard == "") {
         $('.name').before('<p class="errormessage">Please enter your last name.</p>');
-        e.preventDefault();
+        valid = false;
       } else if (!(nameRegex.test(lastCard))) {
         $('.name').before('<p class="errormessage">Your name can\'t contain numbers.</p>');
-        e.preventDefault();
+        valid = false;
       }
 
       if (cardNumber == "") {
         $('#cardNumber').before('<p class="errormessage">Please enter your card number.</p>');
-        e.preventDefault();
+        valid = false;
       } else if (isNaN(cardNumber) || (cardNumber.toString().length != 16)) {
         $('#cardNumber').before('<p class="errormessage">Incorrect format</p>');
-        e.preventDefault();
+        valid = false;
       }
 
       if (expiryDate == "") {
         $('#expiryDate').before('<p class="errormessage">Please enter your card expiration date.</p>');
-        e.preventDefault();
+        valid = false;
       } else if (!(expiryRegex.test(expiryDate))) {
         $('#expiryDate').before('<p class="errormessage">Incorrect format</p>');
-        e.preventDefault();
+        valid = false;
       }
 
       if (cvv == "") {
         $('#cvv').before('<p class="errormessage">Please enter your card security code.</p>');
-        e.preventDefault();
+        valid = false;
       } else if (isNaN(cvv) || cvv.toString().length != 3) {
         $('#cvv').before('<p class="errormessage">Incorrect format.</p>');
-        e.preventDefault();
+        valid = false;
       }
 
       if (firstBilling == "") {
         $('#firstBilling').before('<p class="errormessage">Please enter your first name.</p>');
-        e.preventDefault();
+        valid = false;
       } else if (!(nameRegex.test(firstBilling))) {
         $('#firstBilling').before('<p class="errormessage">Incorrect format</p>');
-        e.preventDefault();
+        valid = false;
       }
 
       if (lastBilling == "") {
         $('#lastBilling').before('<p class="errormessage">Please enter your last name.</p>');
-        e.preventDefault();
+        valid = false;
       } else if (!(nameRegex.test(lastBilling))) {
         $('#lastBilling').before('<p class="errormessage">Incorrect format</p>');
-        e.preventDefault();
+        valid = false;
       }
 
       if (address1 == "") {
         $('#address1').before('<p class="errormessage">Please enter your address.</p>');
-        e.preventDefault();
-      } else if (!(addressRegex.test(address1))) {
-        $('#address1').before('<p class="errormessage">Incorrect format</p>');
-        e.preventDefault();
+        valid = false;
       }
 
       if (city == "") {
         $('#city').before('<p class="errormessage">Please enter your city.</p>');
-        e.preventDefault();
+        valid = false;
       } else if (!(isNaN(city))) {
         $('#city').before('<p class="errormessage">Incorrect format</p>');
-        e.preventDefault();
+        valid = false;
       }
 
       if (zip == "") {
         $('#zip').before('<p class="errormessage">Please enter your zip code.</p>');
-        e.preventDefault();
-      } else if (isNaN(zip) || zip.toString().length != 4) {
+        valid = false;
+      } else if (isNaN(zip) || zip.toString().length != 5) {
         $('#zip').before('<p class="errormessage">Incorrect format</p>');
-        e.preventDefault();
+        valid = false;
       }
 
       if (emailBilling == "") {
         $('#emailBilling').before('<p class="errormessage">Please enter your email address.</p>');
-        e.preventDefault();
+        valid = false;
       } else if (!(emailRegex.test(emailBilling))) {
         $('#emailBilling').before('<p class="errormessage">Incorrect format</p>');
-        e.preventDefault();
+        valid = false;
       }
 
       if (firstRes == "") {
         $('#firstRes').before('<p class="errormessage">Please enter your first name.</p>');
-        e.preventDefault();
+        valid = false;
       } else if (!(nameRegex.test(firstRes))) {
         $('#firstRes').before('<p class="errormessage">Incorrect format</p>');
-        e.preventDefault();
+        valid = false;
       }
 
       if (lastRes == "") {
         $('#lastRes').before('<p class="errormessage">Please enter your last name.</p>');
-        e.preventDefault();
+        valid = false;
       } else if (!(nameRegex.test(lastRes))) {
         $('#lastRes').before('<p class="errormessage">Incorrect format</p>');
-        e.preventDefault();
+        valid = false;
       }
 
       if (valid) {
@@ -770,11 +766,10 @@ $.noConflict();
       docCookies.setItem("emailBilling", emailBilling);
       docCookies.setItem("firstRes", firstRes);
       docCookies.setItem("lastRes", lastRes);
+
+      console.log("done");
     }
-
   });
-
-
 
   /* nine: review */
 
