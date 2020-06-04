@@ -121,9 +121,88 @@
 
     <section id="paymentReview" class="review">
       <!-- redisplay same form as before -->
-      <form id="paymentForm">
+      <ul>
+        <li>
+          <h5>Card Information</h5>
+          <ul class="card">
+            <li>
+              <ul class="name">
+                <li>
+                  <label for="firstCard">First Name</label> <!-- to include or not to include -->
+                  <input type="text" id="firstCard" placeholder="First Name" />
+                </li>
+                <li>
+                  <label for="lastCard">Last Name</label>
+                  <input type="text" id="lastCard" placeholder="Last Name" />
+                </li>
+              </ul>
+            </li>
+            <li>
+              <label for="cardNumber">Card Number</label>
+              <input type="text" id="cardNumber" pattern="[0-9]*" placeholder="Card Number" />
+            </li>
+            <li>
+              <label for="expiryDate">Expiry Date</label>
+              <input type="text" id="expiryDate" placeholder="Exp Date" />
+            </li>
+            <li>
+              <label for="cvv">CVV</label>
+              <input type="text" id="cvv" pattern="[0-9]*" placeholder="CVV" />
+            </li>
+          </ul>
+        </li>
 
-      </form>
+        <li>
+          <h5>Billing Information</h5>
+          <ul class="billing">
+            <!-- auto populate name from above section -->
+            <!-- get a city/zip code API -->
+            <li>
+              <label for="firstBilling">First Name</label>
+              <input type="text" id="firstBilling" placeholder="First Name" />
+            </li>
+            <li>
+              <label for="lastBilling">Last Name</label>
+              <input type="text" id="lastBilling" placeholder="Last Name" />
+            </li>
+            <li>
+              <label for="address1">Address Line 1</label>
+              <input type="text" id="address1" placeholder="Address Line 1" />
+            </li>
+            <li>
+              <label for="address2">Address Line 2 (optional)</label>
+              <input type="text" id="address2" placeholder="Address Line 2 (optional)" />
+            </li>
+            <li>
+              <label for="city">City</label>
+              <input type="text" id="city" placeholder="City" />
+            </li>
+            <li>
+              <label for="zip">Zip Code</label>
+              <input type="text" id="zip" placeholder="Zip Code" />
+            </li>
+            <li>
+              <label for="emailBilling">Email</label>
+              <input type="email" id="emailBilling" placeholder="Email Address" />
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <h5>Reservation Name</h5>
+          <ul class="reservation">
+            <li>
+              <label for="firstRes">First Name</label>
+              <input type="text" id="firstRes" placeholder="First Name" />
+            </li>
+            <li>
+              <label for="lastRes">Last Name</label>
+              <input type="text" id="lastRes" placeholder="Last Name" />
+            </li>
+          </ul>
+        </li>
+
+      </ul>
     </section>
 
     <form action="confirmation.html" id="complete">

@@ -375,3 +375,9 @@ li .aisle {
   margin-bottom: 21px;
   margin-right: 21px;
 }
+
+#paymentReview {
+  width: 85%;
+  min-width: 250px;
+  max-width: 300px; /* idk */
+}
