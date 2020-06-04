@@ -787,7 +787,11 @@ $.noConflict();
   $('#returnLink').on('click', function(e) {
     e.preventDefault();
     $('#paymentReview').hide();
+    $('#paymentLink').removeClass('bold');
+
     $('#departingReview').hide();
+    $('#departingLink').removeClass('bold');
+
     $('#returnReview').show();
 
     /* add bold to the selected item */
@@ -797,7 +801,11 @@ $.noConflict();
   $('#departingLink').on('click', function(e) {
     e.preventDefault();
     $('#paymentReview').hide();
+    $('#paymentLink').removeClass('bold');
+
     $('#returnReview').hide();
+    $('#returnLink').removeClass('bold');
+
     $('#departingReview').show();
 
     /* add bold to the selected item */
@@ -807,7 +815,11 @@ $.noConflict();
   $('#paymentLink').on('click', function(e) {
     e.preventDefault();
     $('#returnReview').hide();
+    $('#returnLink').removeClass('bold');
+
     $('#departingReview').hide();
+    $('#departingLink').removeClass('bold');
+
     $('#paymentReview').show();
 
     /* add bold to the selected item */
