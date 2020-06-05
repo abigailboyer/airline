@@ -289,7 +289,7 @@ button:focus {
 #returnSelection {
   /* totally different than other pages? idk probably bad */
   position: absolute;
-  top: 189px;
+  top: 168px;
   left: 21px;
   right: 21px;
   width: auto;
@@ -297,6 +297,7 @@ button:focus {
 
 /* figure container */
 .searchResults {
+  margin-bottom: 21px;
 }
 
 /* an individual result */
@@ -307,7 +308,7 @@ button:focus {
 
 .flight ul {
   display: inline-block;
-  margin-bottom: 42px;
+  margin: 21px 10px 21px 10px;
 }
 
 /* TODO: don't know why hover isn't working. come back to it later */
@@ -361,7 +362,8 @@ li .aisle {
 }
 
 .selected {
-  background-color: red;
+  background-color: #ffcf97;
+  border-radius: 10px;
 }
 
 /* form results */
