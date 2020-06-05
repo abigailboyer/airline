@@ -154,7 +154,7 @@ input[type="date"] {
   padding: 0;
   padding-left: 10px;
   padding-right: 10px;
-  color: #7d7d7d; /* todo: add color jus to placeholder text not the typed text */
+  color: #7d7d7d; /* todo: add color just to placeholder text not the typed text */
 }
 
 label {
@@ -167,6 +167,14 @@ label {
 
 form li {
   margin-bottom: 26.50px;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: 0;
+  box-shadow: 0 0 1px 1px #ffc788;
 }
 
 /* reusable */
