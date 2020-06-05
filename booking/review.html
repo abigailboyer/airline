@@ -120,6 +120,7 @@
     </section>
 
     <section id="paymentReview" class="review">
+      <!-- todo: change from inputs to just li and style -->
       <!-- redisplay same form as before -->
       <ul>
         <li>
@@ -129,25 +130,25 @@
               <ul class="name">
                 <li>
                   <label for="firstCard">First Name</label> <!-- to include or not to include -->
-                  <input type="text" id="firstCard" placeholder="First Name" />
+                  <input type="text" id="firstCard" placeholder="First Name" readonly="readonly" />
                 </li>
                 <li>
                   <label for="lastCard">Last Name</label>
-                  <input type="text" id="lastCard" placeholder="Last Name" />
+                  <input type="text" id="lastCard" placeholder="Last Name" readonly="readonly" />
                 </li>
               </ul>
             </li>
             <li>
               <label for="cardNumber">Card Number</label>
-              <input type="text" id="cardNumber" pattern="[0-9]*" placeholder="Card Number" />
+              <input type="text" id="cardNumber" pattern="[0-9]*" placeholder="Card Number" readonly="readonly" />
             </li>
             <li>
               <label for="expiryDate">Expiry Date</label>
-              <input type="text" id="expiryDate" placeholder="Exp Date" />
+              <input type="text" id="expiryDate" placeholder="Exp Date" readonly="readonly" />
             </li>
             <li>
               <label for="cvv">CVV</label>
-              <input type="text" id="cvv" pattern="[0-9]*" placeholder="CVV" />
+              <input type="text" id="cvv" pattern="[0-9]*" placeholder="CVV" readonly="readonly" />
             </li>
           </ul>
         </li>
@@ -159,31 +160,31 @@
             <!-- get a city/zip code API -->
             <li>
               <label for="firstBilling">First Name</label>
-              <input type="text" id="firstBilling" placeholder="First Name" />
+              <input type="text" id="firstBilling" placeholder="First Name" readonly="readonly" />
             </li>
             <li>
               <label for="lastBilling">Last Name</label>
-              <input type="text" id="lastBilling" placeholder="Last Name" />
+              <input type="text" id="lastBilling" placeholder="Last Name" readonly="readonly" />
             </li>
             <li>
               <label for="address1">Address Line 1</label>
-              <input type="text" id="address1" placeholder="Address Line 1" />
+              <input type="text" id="address1" placeholder="Address Line 1" readonly="readonly" />
             </li>
             <li>
               <label for="address2">Address Line 2 (optional)</label>
-              <input type="text" id="address2" placeholder="Address Line 2 (optional)" />
+              <input type="text" id="address2" placeholder="Address Line 2 (optional)" readonly="readonly" />
             </li>
             <li>
               <label for="city">City</label>
-              <input type="text" id="city" placeholder="City" />
+              <input type="text" id="city" placeholder="City" readonly="readonly" />
             </li>
             <li>
               <label for="zip">Zip Code</label>
-              <input type="text" id="zip" placeholder="Zip Code" />
+              <input type="text" id="zip" placeholder="Zip Code" readonly="readonly" />
             </li>
             <li>
               <label for="emailBilling">Email</label>
-              <input type="email" id="emailBilling" placeholder="Email Address" />
+              <input type="email" id="emailBilling" placeholder="Email Address" readonly="readonly" />
             </li>
           </ul>
         </li>
@@ -193,11 +194,11 @@
           <ul class="reservation">
             <li>
               <label for="firstRes">First Name</label>
-              <input type="text" id="firstRes" placeholder="First Name" />
+              <input type="text" id="firstRes" placeholder="First Name" readonly="readonly" />
             </li>
             <li>
               <label for="lastRes">Last Name</label>
-              <input type="text" id="lastRes" placeholder="Last Name" />
+              <input type="text" id="lastRes" placeholder="Last Name" readonly="readonly" />
             </li>
           </ul>
         </li>
