@@ -260,7 +260,26 @@ button:focus {
 /* passenger type and number selection */
 
 .tickets input[type="text"]{
-  width: 50%; /* 50% of parent whose max width only goes up to 300px */
+  text-align: center;
+  width: 25%; /* 25% of parent whose max width only goes up to 300px */
+}
+
+.more,
+.less {
+  display: inline-block;
+  text-align: center;
+  background-color: #ffcf97;
+  width: 26px;
+  height: 26px;
+  border-radius: 10.5px;
+}
+
+.more {
+  margin-left: 7px;
+}
+
+.less {
+  margin-right: 7px;
 }
 
 /* flight selection */
